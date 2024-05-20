@@ -1,4 +1,4 @@
-package boundaries;
+package demo.boundaries;
 
 public class UserBoundary {
 
