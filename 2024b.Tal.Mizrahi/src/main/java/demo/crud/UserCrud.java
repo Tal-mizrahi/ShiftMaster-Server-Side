@@ -6,4 +6,4 @@ import demo.entities.UserEntity;
 
 public interface UserCrud extends JpaRepository<UserEntity, String> {
 
-}
+} 

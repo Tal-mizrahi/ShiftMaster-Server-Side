@@ -63,7 +63,7 @@ public class CommandEntity {
 	/** On Wednesday we will learn how to use with
 	 *  a map and with objects we created (CreatedBy object)
 	 */
-	
+	 
 //	public CreatedBy getInvokedBy() {
 //		return invokedBy;
 //	}

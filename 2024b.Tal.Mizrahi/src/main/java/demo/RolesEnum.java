@@ -5,4 +5,4 @@ public enum RolesEnum {
     SUPERAPP_USER,
     MINIAPP_USER,
 
-}
+} 

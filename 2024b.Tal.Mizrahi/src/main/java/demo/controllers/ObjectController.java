@@ -14,5 +14,4 @@ public class ObjectController {
 	public ObjectController(ObjectService objectService) {
 		this.objectService = objectService;
 	}
-
 }

@@ -6,4 +6,4 @@ import demo.entities.CommandEntity;
 
 public interface CommandCrud extends JpaRepository<CommandEntity, String>{
 
-}
+} 

@@ -18,8 +18,6 @@ public class ObjectEntity {
 	    private String alias;
 	    private Boolean active;
 	    private Date creationTimeStamp;
-
-
 //		private CreatedBy createdBy;
 //	    private Map<String, Object> objectDetails;
 	    
