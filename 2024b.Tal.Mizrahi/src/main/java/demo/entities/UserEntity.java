@@ -10,20 +10,21 @@ import jakarta.persistence.Table;
 @Table(name = "USER_TABLE")
 public class UserEntity {
 
-	@Id private String userId; // need to check on Wednesday if it can be UserId object
+	@Id private String email; 
+	//private String superApp; we need to choose if to save it to the DB
     private String userName;
 	private RolesEnum role;
-    private String avatar;
+    private String avatar; // need to choose if to save it to the DB
 
 	public UserEntity() {
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getUserName() {
@@ -52,9 +53,13 @@ public class UserEntity {
 
 	@Override
 	public String toString() {
-		return "UserEntity [userId=" + userId + ", userName=" + userName + ", role=" + role + ", avatar=" + avatar
-				+ "]";
+		return "UserEntity [email=" + email 
+				+ ", userName=" + userName 
+				+ ", role=" + role 
+				+ ", avatar=" + avatar + "]";
 	}
+
+	
     
     
 }

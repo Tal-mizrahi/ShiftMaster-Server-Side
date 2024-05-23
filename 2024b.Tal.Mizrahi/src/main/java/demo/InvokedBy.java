@@ -1,11 +1,11 @@
 package demo;
 
-public class CreatedBy {
+public class InvokedBy {
 	
 	private UserId userId;
 
-	public CreatedBy() {
-
+	public InvokedBy() {
+		
 	}
 
 	public UserId getUserId() {
@@ -18,10 +18,8 @@ public class CreatedBy {
 
 	@Override
 	public String toString() {
-		return "CreatedBy [userId=" + userId + "]";
+		return "InvokedBy [userId=" + userId + "]";
 	}
 	
-	
-	
 
-} 
+}
