@@ -1,5 +1,8 @@
 package demo;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class CreatedBy {
 	
 	private UserId userId;

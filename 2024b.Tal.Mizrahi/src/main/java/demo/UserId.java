@@ -1,5 +1,8 @@
 package demo;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class UserId {
 	
 	private String superApp;

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Map;
 
 import demo.CreatedBy;
+import demo.Location;
 import demo.ObjectId;
 
 public class ObjectBoundary {
@@ -11,8 +12,9 @@ public class ObjectBoundary {
 	private ObjectId objectId;
     private String type;
     private String alias;
+    private Location location;
     private Boolean active;
-    private Date creationTimeStamp;
+    private Date creationTimesTamp;
     private CreatedBy createdBy;
     private Map<String, Object> objectDetails;
 	
@@ -51,12 +53,12 @@ public class ObjectBoundary {
 		this.active = active;
 	}
 
-	public Date getCreationTimeStamp() {
-		return creationTimeStamp;
+	public Date getCreationTimestamp() {
+		return creationTimesTamp;
 	}
 
-	public void setCreationTimeStamp(Date creationTimeStamp) {
-		this.creationTimeStamp = creationTimeStamp;
+	public void setCreationTimestamp(Date creationTimeStamp) {
+		this.creationTimesTamp = creationTimeStamp;
 	}
 
 	public CreatedBy getCreatedBy() {
@@ -75,17 +77,27 @@ public class ObjectBoundary {
 		this.objectDetails = objectDetails;
 	}
 
+	public Location getLocation() {
+		return location;
+	}
+	
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+	
 	@Override
 	public String toString() {
 		return "ObjectBoundary [objectId=" + objectId 
 				+ ", type=" + type 
 				+ ", alias=" + alias 
 				+ ", active=" + active
-				+ ", creationTimeStamp=" + creationTimeStamp 
+				+ ", location= " + location
+				+ ", creationTimeStamp=" + creationTimesTamp 
 				+ ", createdBy=" + createdBy 
 				+ ", objectDetails=" + objectDetails + "]";
 		
 	}
+
     
     
     

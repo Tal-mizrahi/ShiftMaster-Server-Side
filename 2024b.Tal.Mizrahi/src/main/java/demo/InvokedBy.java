@@ -1,5 +1,8 @@
 package demo;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class InvokedBy {
 	
 	private UserId userId;

@@ -1,19 +1,22 @@
 package demo;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class CommandId {
 		
-		private String superApp;
+		private String superAppName;
 		private String miniApp;
 		private String id;
 		
 		public CommandId () {}
 
-		public String getSuperApp() {
-			return superApp;
+		public String getSuperAppName() {
+			return superAppName;
 		}
 
-		public void setSuperApp(String superApp) {
-			this.superApp = superApp;
+		public void setSuperAppName(String superAppName) {
+			this.superAppName = superAppName;
 		}
 
 		public String getMiniApp() {
@@ -34,7 +37,7 @@ public class CommandId {
 		
 		@Override
 		public String toString() {
-			return "CommandId [superApp=" + superApp 
+			return "CommandId [superAppName=" + superAppName 
 					+ ", miniApp=" + miniApp 
 					+ ", id=" + id + "]";
 		}

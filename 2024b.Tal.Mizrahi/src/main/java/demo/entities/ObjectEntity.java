@@ -6,42 +6,54 @@ import java.util.Map;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import demo.CreatedBy;
-import demo.DemoApplicationMapToStringConverter;
+import demo.Location;
+import demo.ObjectId;
+import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "OBJECT_TABLE")
 public class ObjectEntity {
 	
-	   @Id private String objectID;
+		@EmbeddedId
+		private ObjectId objectId;
 		private String type;
 	    private String alias;
-	    private Boolean active;
+	    private boolean active;
 	    
 	    @Temporal(TemporalType.TIMESTAMP)
-	    private Date creationTimeStamp;
+	    private Date creationTimesTamp;
 	    
-//		private CreatedBy createdBy;
-		private String superApp;
-		private String email;
+	    @Embedded
+	    private CreatedBy createdBy;
 	    
-	    @Lob
-		@Convert(converter = ObjectApplicationMapToStringConverter.class)
+	    @Transient
+	    @Embedded
+	    private Location location;
+	    
+	    
+		@Transient
+		//@Lob
+		//@Convert(converter = ObjectApplicationMapToStringConverter.class)
 	    private Map<String, Object> objectDetails;
 	    
 	    public ObjectEntity() {
 	    }
 
-		public String getObjectID() {
-			return objectID;
+		public ObjectId getObjectId() {
+			return objectId;
 		}
 
-		public void setObjectID(String objectID) {
-			this.objectID = objectID;
+		public void setObjectId(ObjectId objectId) {
+			this.objectId = objectId;
 		}
 
 		public String getType() {
@@ -60,49 +72,51 @@ public class ObjectEntity {
 			this.alias = alias;
 		}
 
-		public Boolean getActive() {
+		public boolean getActive() {
 			return active;
 		}
 
-		public void setActive(Boolean active) {
+		public void setActive(boolean active) {
 			this.active = active;
 		}
 
-		public Date getCreationTimeStamp() {
-			return creationTimeStamp;
+		public Date getCreationTimesTamp() {
+			return creationTimesTamp;
 		}
 
-		public void setCreationTimeStamp(Date creationTimeStamp) {
-			this.creationTimeStamp = creationTimeStamp;
+		public void setCreationTimesTamp(Date creationTimeStamp) {
+			this.creationTimesTamp = creationTimeStamp;
 		}
 
-		/** On Wednesday we will learn how to use with
-		 *  a map and with objects we created (CreatedBy object)
-		 */
-		
-//		public CreatedBy getCreatedBy() {
-//			return createdBy;
-//		}
-		
-//		public void setCreatedBy(CreatedBy createdBy) {
-//			this.createdBy = createdBy;
-//		}
-//		
-//		public Map<String, Object> getObjectDetails() {
-//			return objectDetails;
-//		}
-//		
-//		public void setObjectDetails(Map<String, Object> objectDetails) {
-//			this.objectDetails = objectDetails;
-//		}
-		
-//		@Override
-//		public String toString() {
-//			return "ObjectEntity [objectID=" + objectID + ", type=" + type + ", alias=" + alias + ", active=" + active
-//					+ ", creationTimeStamp=" + creationTimeStamp + ", createdBy=" + createdBy + ", objectDetails="
-//					+ objectDetails + "]";
-//		}
-		
+
+		public Map<String, Object> getObjectDetails() {
+			return objectDetails;
+		}
+
+		public void setObjectDetails(Map<String, Object> objectDetails) {
+			this.objectDetails = objectDetails;
+		}
+
+		public CreatedBy getCreatedBy() {
+			return createdBy;
+		}
+
+		public void setCreatedBy(CreatedBy createdBy) {
+			this.createdBy = createdBy;
+		}
+
+		@Override
+		public String toString() {
+			return "ObjectEntity [objectId=" + objectId 
+					+ ", type=" + type 
+					+ ", alias=" + alias 
+					+ ", active=" + active
+					+ ", creationTimeStamp=" + creationTimesTamp 
+					+ ", createdBy=" + createdBy 
+					+ ", objectDetails=" + objectDetails + "]";
+		}
+
+
 
 
 }
