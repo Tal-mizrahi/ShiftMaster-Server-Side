@@ -48,14 +48,15 @@ public class UserServiceImplementation implements UserService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<UserBoundary> getUserByEmail(String email) {
-		String id = springApplicationName + "#" + email;
+	public Optional<UserBoundary> getUser(String email, String superapp) {
+		String id = superapp + "#" + email;
 		Optional<UserEntity> optionalEntity = this.userCrud.findById(id);	
 		
 		if (!optionalEntity.isEmpty()) {
 			System.err.println("Read from Database: " + optionalEntity.get());
 		}else {
-			System.err.println("UserEntity with email: " + email + " Does not exist in database");
+			System.err.println("UserEntity with email: " + email 
+					+ " and superapp " + superapp + " Does not exist in database");
 		}
 		
 		return optionalEntity
@@ -63,11 +64,12 @@ public class UserServiceImplementation implements UserService {
 	}
 
 	@Override
-	public void updateDetailsByEmail(String email, UserBoundary update) {
-		String id = springApplicationName + "#" + email;
+	public void updateDetails(String email, String superapp, UserBoundary update) {
+		String id = superapp + "#" + email;
 		UserEntity entity = this.userCrud
 				.findById(id)
-				.orElseThrow(() -> new RuntimeException("UserEntity with email: " + email + " Does not exist in database"));
+				.orElseThrow(() -> new RuntimeException("UserEntity with email: " + email 
+						+ " and superapp " + superapp + " Does not exist in database"));
 
 		if (update.getUsername() != null)
 			entity.setUsername(update.getUsername());

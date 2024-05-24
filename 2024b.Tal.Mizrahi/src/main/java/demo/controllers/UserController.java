@@ -35,22 +35,26 @@ public class UserController {
 	
 	
 	@GetMapping(
-			path = { "login/${spring.application.name}/{email}" }, 
+			path = { "login/{superapp}/{email}" }, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
-		public UserBoundary getUserByEmail(
-				@PathVariable("email") String email) {
+		public UserBoundary getUser(
+				@PathVariable("email") String email,
+				@PathVariable("superapp") String superapp){
 			return this.userService
-				.getUserByEmail(email)
-				.orElseThrow(()->new RuntimeException("could not find user by email: " + email));
+				.getUser(email, superapp)
+				.orElseThrow(()->new RuntimeException("could not find user by email: " + email
+						+ " and by superapp: " + superapp));
 		}
 	
     @PutMapping(
-            path={"/${spring.application.name}/{userEmail}"},
+            path={"/{superapp}/{userEmail}"},
             consumes={MediaType.APPLICATION_JSON_VALUE},
             produces={MediaType.APPLICATION_JSON_VALUE})
-    public void updateDetailsByEmail(@PathVariable("userEmail") String email,
-                             @RequestBody UserBoundary boundary) {
-    		userService.updateDetailsByEmail(email, boundary);
+    public void updateDetails(
+    			@PathVariable("userEmail") String email,
+    			@PathVariable("superapp") String superapp,
+                @RequestBody UserBoundary boundary) {
+    		userService.updateDetails(email,superapp, boundary);
     }
 	
 	

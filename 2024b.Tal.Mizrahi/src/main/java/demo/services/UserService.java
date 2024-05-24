@@ -9,7 +9,7 @@ public interface UserService {
 
 	public UserBoundary createNewUser(NewUserBoundary boundary);
 	
-	public Optional<UserBoundary> getUserByEmail(String email);
+	public Optional<UserBoundary> getUser(String email, String superapp);
 	
-	public void updateDetailsByEmail (String email, UserBoundary update);
+	public void updateDetails (String email, String superapp, UserBoundary update);
 }
