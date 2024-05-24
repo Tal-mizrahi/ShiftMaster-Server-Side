@@ -25,8 +25,12 @@ public class NewUserBoundary {
 		return role;
 	}
 
-	public void setRole(RolesEnum role) {
-		this.role = role;
+	public void setRole(String role) {
+		this.role = null;
+		for (RolesEnum r : RolesEnum.values()) {
+			if (r.name().equals(role))
+				this.role = r;
+		}
 	}
 
 	public String getUsername() {
@@ -44,6 +48,7 @@ public class NewUserBoundary {
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
+	
 
 	@Override
 	public String toString() {

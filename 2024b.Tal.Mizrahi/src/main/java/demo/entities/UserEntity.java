@@ -1,44 +1,43 @@
 package demo.entities;
 
 import demo.RolesEnum;
-import demo.UserId;
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "USER_TABLE")
 public class UserEntity {
 
-	@EmbeddedId
-	private UserId userId;
-    private String userName;
+	@Id
+	private String userId;
+    private String username;
     
     @Enumerated(EnumType.STRING)
 	private RolesEnum role;
     
-	private String avatar; // need to choose if to save it to the DB
+	private String avatar; 
 
-	
 	public UserEntity() {
 	}
+	
+	
+	public String getUserId() {
+	return userId;
+}
 
-	public UserId getEmail() {
-		return userId;
+public void setUserId(String userId) {
+	this.userId = userId;
+}
+
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserId(UserId userId) {
-		this.userId = userId;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public RolesEnum getRole() {
@@ -60,12 +59,9 @@ public class UserEntity {
 	@Override
 	public String toString() {
 		return "UserEntity [userId=" + userId 
-				+ ", userName=" + userName 
+				+ ", username=" + username 
 				+ ", role=" + role 
 				+ ", avatar=" + avatar + "]";
 	}
-
 	
-    
-    
 }

@@ -1,8 +1,5 @@
 package demo;
 
-import jakarta.persistence.Embeddable;
-
-@Embeddable
 public class UserId {
 	
 	private String superApp;
@@ -10,6 +7,14 @@ public class UserId {
 	
 	public UserId() {
 	}
+	
+
+	public UserId(String superApp, String email) {
+		this.superApp = superApp;
+		this.email = email;
+	}
+
+
 
 	public String getSuperApp() {
 		return superApp;
@@ -26,6 +31,7 @@ public class UserId {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 
 	@Override
 	public String toString() {

@@ -1,8 +1,5 @@
 package demo;
 
-import jakarta.persistence.Embeddable;
-
-@Embeddable
 public class Location {
 
 	private Double lat;
@@ -12,6 +9,11 @@ public class Location {
 
 	}
 
+	public Location(Double lat, Double lng) {
+		this.lat = lat;
+		this.lng = lng; 
+	}
+	
 	public Double getLat() {
 		return lat;
 	}

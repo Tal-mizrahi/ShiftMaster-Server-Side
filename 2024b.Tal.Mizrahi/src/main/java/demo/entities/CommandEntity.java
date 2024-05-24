@@ -26,8 +26,8 @@ import jakarta.persistence.Transient;
 @Table(name = "COMMAND_TABLE")
 public class CommandEntity {
 	
-	@EmbeddedId
-	private CommandId commandId;
+	@Id
+	private String commandId;
 
 	private String miniAppName;
 	private String command;
@@ -35,22 +35,21 @@ public class CommandEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date invocationTimeStamp;
 	
-	@Embedded
-	private InvokedBy invokedBy;
+	private String invokedBy;
 		
-	@Transient
-	//@Lob
-	//@Convert(converter = CommandApplicationMapToStringConverter.class)
+	//@Transient
+	@Lob
+	@Convert(converter = ApplicationMapToStringConverter.class)
 	private Map<String, Object> commandAttributes;
 	
 	public CommandEntity() {
 	}
 
-	public CommandId getCommandId() {
+	public String getCommandId() {
 		return commandId;
 	}
 
-	public void setCommandId(CommandId commandId) {
+	public void setCommandId(String commandId) {
 		this.commandId = commandId;
 	}
 	
@@ -79,11 +78,11 @@ public class CommandEntity {
 	}
 	
 	 
-	public InvokedBy getInvokedBy() {
+	public String getInvokedBy() {
 		return invokedBy;
 	}
 	
-	public void setInvokedBy(InvokedBy invokedBy) {
+	public void setInvokedBy(String invokedBy) {
 		this.invokedBy = invokedBy;
 	}
 	

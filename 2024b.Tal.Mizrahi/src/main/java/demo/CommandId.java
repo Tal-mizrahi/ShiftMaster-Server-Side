@@ -1,15 +1,12 @@
 package demo;
 
-import jakarta.persistence.Embeddable;
-
-@Embeddable
 public class CommandId {
 		
 		private String superAppName;
 		private String miniApp;
 		private String id;
 		
-		public CommandId () {}
+		public CommandId () {} 
 
 		public String getSuperAppName() {
 			return superAppName;

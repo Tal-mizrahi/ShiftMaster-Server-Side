@@ -1,25 +1,26 @@
 package demo;
 
-import jakarta.persistence.Embeddable;
-
-@Embeddable
 public class ObjectId {
 
-	private String superAppName;
+	private String superApp;
 	private String id;
 
-	
 	public ObjectId() {
 	}
+	
+	public ObjectId(String superApp, String id) {
+		this.superApp = superApp;
+		this.id = id;
+	}
+	
 
-
-	public String getSuperAppName() {
-		return superAppName;
+	public String getSuperApp() {
+		return superApp;
 	}
 
 
-	public void setSuperAppName(String superAppName) {
-		this.superAppName = superAppName;
+	public void setSuperApp(String superApp) {
+		this.superApp = superApp;
 	}
 
 
@@ -35,7 +36,7 @@ public class ObjectId {
 
 	@Override
 	public String toString() {
-		return "ObjectId [superApp=" + superAppName + ", id=" + id + "]";
+		return "ObjectId [superApp=" + superApp + ", id=" + id + "]";
 	}
 	
 	

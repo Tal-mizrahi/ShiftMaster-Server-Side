@@ -1,8 +1,5 @@
 package demo;
 
-import jakarta.persistence.Embeddable;
-
-@Embeddable
 public class InvokedBy {
 	
 	private UserId userId;
@@ -11,6 +8,10 @@ public class InvokedBy {
 		
 	}
 
+	public InvokedBy(UserId userId) {
+		this.userId = userId;
+	}
+	
 	public UserId getUserId() {
 		return userId;
 	}

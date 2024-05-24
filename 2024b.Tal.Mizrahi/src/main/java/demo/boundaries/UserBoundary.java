@@ -8,12 +8,10 @@ public class UserBoundary {
 	private UserId userId;
 	private RolesEnum role;
 	private String username;
-	private String avatar;
+	private String avatar;	
+
+	public UserBoundary() {}
 	
-	public UserBoundary() {
-
-	}
-
 	public UserId getUserId() {
 		return userId;
 	}

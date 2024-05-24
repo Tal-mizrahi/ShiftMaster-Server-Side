@@ -5,26 +5,18 @@ import java.util.Map;
 
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
-import demo.CreatedBy;
-import demo.Location;
-import demo.ObjectId;
-import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "OBJECT_TABLE")
 public class ObjectEntity {
 	
-		@EmbeddedId
-		private ObjectId objectId;
+		@Id
+		private String objectId;
 		private String type;
 	    private String alias;
 	    private boolean active;
@@ -32,27 +24,22 @@ public class ObjectEntity {
 	    @Temporal(TemporalType.TIMESTAMP)
 	    private Date creationTimesTamp;
 	    
-	    @Embedded
-	    private CreatedBy createdBy;
+	    private String createdBy;
 	    
-	    @Transient
-	    @Embedded
-	    private Location location;
+	    private String location;
 	    
-	    
-		@Transient
-		//@Lob
-		//@Convert(converter = ObjectApplicationMapToStringConverter.class)
+		@Lob
+		@Convert(converter = ApplicationMapToStringConverter.class)
 	    private Map<String, Object> objectDetails;
 	    
 	    public ObjectEntity() {
 	    }
 
-		public ObjectId getObjectId() {
+		public String getObjectId() {
 			return objectId;
 		}
 
-		public void setObjectId(ObjectId objectId) {
+		public void setObjectId(String objectId) {
 			this.objectId = objectId;
 		}
 
@@ -70,6 +57,15 @@ public class ObjectEntity {
 
 		public void setAlias(String alias) {
 			this.alias = alias;
+		}
+		
+
+		public String getLocation() {
+			return location;
+		}
+
+		public void setLocation(String location) {
+			this.location = location;
 		}
 
 		public boolean getActive() {
@@ -97,11 +93,11 @@ public class ObjectEntity {
 			this.objectDetails = objectDetails;
 		}
 
-		public CreatedBy getCreatedBy() {
+		public String getCreatedBy() {
 			return createdBy;
 		}
 
-		public void setCreatedBy(CreatedBy createdBy) {
+		public void setCreatedBy(String createdBy) {
 			this.createdBy = createdBy;
 		}
 
@@ -110,6 +106,7 @@ public class ObjectEntity {
 			return "ObjectEntity [objectId=" + objectId 
 					+ ", type=" + type 
 					+ ", alias=" + alias 
+					+ ", location" + location
 					+ ", active=" + active
 					+ ", creationTimeStamp=" + creationTimesTamp 
 					+ ", createdBy=" + createdBy 

@@ -1,8 +1,5 @@
 package demo;
 
-import jakarta.persistence.Embeddable;
-
-@Embeddable
 public class CreatedBy {
 	
 	private UserId userId;
@@ -10,7 +7,11 @@ public class CreatedBy {
 	public CreatedBy() {
 
 	}
-
+	
+	public CreatedBy(UserId userId) {
+		this.userId = userId;
+	}
+	
 	public UserId getUserId() {
 		return userId;
 	}

@@ -7,9 +7,9 @@ import demo.boundaries.UserBoundary;
 
 public interface UserService {
 
-	public UserBoundary createNewUser(NewUserBoundary newUserBoundary);
+	public UserBoundary createNewUser(NewUserBoundary boundary);
 	
 	public Optional<UserBoundary> getUserByEmail(String email);
 	
-	public void updateDetailsByEmail (UserBoundary userBoundary);
+	public void updateDetailsByEmail (String email, UserBoundary update);
 }
