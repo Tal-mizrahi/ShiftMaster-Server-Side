@@ -19,7 +19,7 @@ public class CommandController {
 	public CommandController(CommandService commandService) {
 		this.commandService = commandService;
 	
-	}
+	} 
 	
 	@PostMapping(
 			path = { "/{miniAppName}"},

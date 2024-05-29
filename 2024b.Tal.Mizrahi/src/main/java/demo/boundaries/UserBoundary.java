@@ -26,7 +26,7 @@ public class UserBoundary {
 
 	public void setRole(RolesEnum role) {
 		this.role = role;
-	}
+	} 
 
 	public String getUsername() {
 		return username;

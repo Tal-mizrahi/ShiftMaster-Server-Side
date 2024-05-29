@@ -21,7 +21,7 @@ public class UserConverter { // from NewUserBoundry to UserEntity
 			entity.setAvatar(boundary.getAvatar());
 		} else {
 			entity.setAvatar(boundary.getUsername().substring(0, 1)); // Put as avatar the first char of username
-		}
+		} 
 		entity.setRole(boundary.getRole());
 
 		return entity;

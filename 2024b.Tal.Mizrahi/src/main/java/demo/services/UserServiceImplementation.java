@@ -56,7 +56,7 @@ public class UserServiceImplementation implements UserService {
 		System.err.println("stored in database: "+ entity);
 		
 		return userConverter.toBoundary(entity);
-	}
+	} 
 
 	@Override
 	@Transactional(readOnly = true)

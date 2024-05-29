@@ -21,7 +21,7 @@ public class UserController {
 
 	public UserController(UserService userService) {
 		this.userService = userService;
-	}
+	} 
 	
 	@PostMapping(
 			consumes = MediaType.APPLICATION_JSON_VALUE,

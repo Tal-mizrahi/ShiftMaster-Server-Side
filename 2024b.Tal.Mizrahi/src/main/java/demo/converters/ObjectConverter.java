@@ -48,7 +48,7 @@ public class ObjectConverter {
 					boundary.getLocation().getLat()
 					+ "#" 
 					+ boundary.getLocation().getLng());
-		}
+		} 
 		
 			
 		entity.setActive(boundary.getActive());

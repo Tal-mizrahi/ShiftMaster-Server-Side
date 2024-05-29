@@ -39,7 +39,6 @@ public class CommandEntity {
 	
 	private String targetObject;
 		
-	//@Transient
 	@Lob
 	@Convert(converter = ApplicationMapToStringConverter.class)
 	private Map<String, Object> commandAttributes;

@@ -30,7 +30,7 @@ public class AdminServiceImplementation implements AdminService {
 	public void setSpringApplicationName(String springApplicationName) {
 		this.springApplicationName = springApplicationName;
 		System.err.println("The Spring Application name is: " + this.springApplicationName);
-	}
+	} 
 	
 
 	public AdminServiceImplementation(UserCrud userCrud, UserConverter userConverter, ObjectCrud objectCrud,

@@ -38,7 +38,7 @@ public class AdminController {
 				path = { "/miniapp" })
 		public void deleteAllCommandsHistory() {
 			this.adminService.deleteAllCommandsHistory();
-		}
+		} 
 
 		@GetMapping(
 				path = {"/users"},

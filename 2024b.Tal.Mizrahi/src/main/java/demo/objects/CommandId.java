@@ -20,11 +20,11 @@ public class CommandId {
 
 		public String getSuperAppName() {
 			return superAppName;
-		}
+		}  
 
 		public void setSuperAppName(String superAppName) {
 			this.superAppName = superAppName;
-		}
+		} 
 
 		public String getMiniApp() {
 			return miniApp;

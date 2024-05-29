@@ -33,7 +33,7 @@ public class ObjectEntity {
 	    private Map<String, Object> objectDetails;
 	    
 	    public ObjectEntity() {
-	    }
+	    } 
 
 		public String getObjectId() {
 			return objectId;

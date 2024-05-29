@@ -15,7 +15,7 @@ public class ApplicationMapToStringConverter
 	public ApplicationMapToStringConverter() {
 		super();
 		this.jackson = new ObjectMapper();
-	}
+	} 
 
 	@Override
 	public String convertToDatabaseColumn(Map<String, Object> attribute) {

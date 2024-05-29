@@ -29,7 +29,7 @@ public class CommandServiceImplementation implements CommandService {
 		this.commandCrud = commandCrud;
 		this.commandConverter = commandConverter;
 	}
-
+ 
 	@Override
 	@Transactional(readOnly = false)
 	public MiniAppCommandBoundary invokeACommand(String miniAppName, MiniAppCommandBoundary boundary) {

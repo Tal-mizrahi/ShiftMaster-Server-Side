@@ -8,3 +8,4 @@ public interface CommandService {
 	public MiniAppCommandBoundary invokeACommand(String miniAppName, MiniAppCommandBoundary boundary);
 
 }
+ 

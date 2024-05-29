@@ -66,7 +66,7 @@ public class ObjectBoundary {
 
 	public CreatedBy getCreatedBy() {
 		return createdBy;
-	}
+	} 
 
 	public void setCreatedBy(CreatedBy createdBy) {
 		this.createdBy = createdBy;

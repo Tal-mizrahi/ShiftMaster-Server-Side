@@ -13,3 +13,4 @@ public interface UserService {
 	
 	public void updateDetails (String email, String superapp, UserBoundary update);
 }
+ 

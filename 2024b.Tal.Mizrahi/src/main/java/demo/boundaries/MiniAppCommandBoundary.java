@@ -77,7 +77,7 @@ public class MiniAppCommandBoundary {
 				+ ", invocationTimesTamp=" + invocationTimesTamp 
 				+ ", invokedBy=" + invokedBy
 				+ ", commandAttribute=" + commandAttribute + "]";
-	}
+	} 
 	
 	
 	

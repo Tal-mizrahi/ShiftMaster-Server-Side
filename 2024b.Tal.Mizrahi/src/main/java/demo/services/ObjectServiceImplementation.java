@@ -52,7 +52,7 @@ public class ObjectServiceImplementation implements ObjectService {
 			
 			throw new BadInputException("Object alias must be not null!");
 		}
-		
+		 
 		if (
 				boundary.getCreatedBy() == null 
 				|| boundary.getCreatedBy().getUserId() == null

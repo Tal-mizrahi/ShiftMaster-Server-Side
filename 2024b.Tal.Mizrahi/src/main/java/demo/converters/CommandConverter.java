@@ -35,7 +35,7 @@ public class CommandConverter {
 				+ "#"
 				+ boundary.getTargetObject().getObjectId().getId() );
 		return entity;
-	}
+	} 
 	
 	public MiniAppCommandBoundary toBoundary(CommandEntity entity) {
 		MiniAppCommandBoundary boundary = new MiniAppCommandBoundary();

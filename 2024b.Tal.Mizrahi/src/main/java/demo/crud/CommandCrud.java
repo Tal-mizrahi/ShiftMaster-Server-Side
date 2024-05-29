@@ -12,4 +12,4 @@ public interface CommandCrud extends JpaRepository<CommandEntity, String>{
 	// SELECT * FROM COMMAND_TABLE WHERE miniAppName  = ?
 	public List<CommandEntity> findAllByMiniAppName(@Param("miniAppName") String miniAppName);
 
-} 
+}  

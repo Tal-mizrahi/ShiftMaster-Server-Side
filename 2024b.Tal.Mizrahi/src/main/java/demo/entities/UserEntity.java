@@ -21,7 +21,7 @@ public class UserEntity {
 	private String avatar; 
 
 	public UserEntity() {
-	}
+	} 
 	
 	
 	public String getUserId() {

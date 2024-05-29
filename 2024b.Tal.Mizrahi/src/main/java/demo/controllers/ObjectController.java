@@ -45,7 +45,7 @@ public class ObjectController {
     	
     	this.objectService.updateObject(objectId, superapp, boundary);
 		
-	}
+	} 
 	
 	@GetMapping(
 			path = { "/{superapp}/{id}" }, 

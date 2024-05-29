@@ -16,3 +16,4 @@ public interface ObjectService {
 	public List<ObjectBoundary> getAllObjects ();
 	
 }
+ 
