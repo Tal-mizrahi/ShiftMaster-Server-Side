@@ -37,14 +37,14 @@ public class UserServiceImplementation implements UserService {
 	public UserBoundary createNewUser(NewUserBoundary boundary) {
 		
 		if ( boundary.getEmail() == null) {
-			throw new RuntimeException("You must enter email!");
+			throw new BadInputException("You must enter email!");
 		}
 		if(boundary.getUsername() == null ) {
-			throw new RuntimeException("You must enter username!");
+			throw new BadInputException("You must enter username!");
 		} 
 		
 		if (boundary.getRole() == null) {
-			throw new RuntimeException("You must enter the userRole - ADMIN, SUPERAPP_USER, MINIAPP_USER");
+			throw new BadInputException("You must enter the userRole - ADMIN, SUPERAPP_USER, MINIAPP_USER");
 		}
 		
 		UserEntity entity = userConverter.toEntity(boundary);
