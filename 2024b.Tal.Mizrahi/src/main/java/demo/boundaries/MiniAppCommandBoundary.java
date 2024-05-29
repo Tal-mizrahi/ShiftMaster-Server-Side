@@ -4,9 +4,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import demo.CommandId;
-import demo.InvokedBy;
-import demo.TargetObject;
+import demo.objects.CommandId;
+import demo.objects.InvokedBy;
+import demo.objects.TargetObject;
 
 public class MiniAppCommandBoundary {
 	

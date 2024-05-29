@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import demo.boundaries.ObjectBoundary;
 import demo.services.ObjectService;
 
@@ -36,26 +35,36 @@ public class ObjectController {
 	
 	
     @PutMapping(
-            path={"/${spring.application.name}/{id}"},
+            path={"/{superapp}/{id}"},
             consumes={MediaType.APPLICATION_JSON_VALUE},
             produces={MediaType.APPLICATION_JSON_VALUE})
-	public void updateObject(@PathVariable String objectId, ObjectBoundary boundary) {
+	public void updateObject(
+			@PathVariable("id") String objectId,
+			@PathVariable("superapp") String superapp,
+			ObjectBoundary boundary) {
+    	
+    	this.objectService.updateObject(objectId, superapp, boundary);
 		
 	}
 	
 	@GetMapping(
-			path = { "${spring.application.name}/{id}" }, 
+			path = { "/{superapp}/{id}" }, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Optional<ObjectBoundary> getObjectById(@PathVariable String objectId) {
+	public ObjectBoundary getObjectById(
+			@PathVariable("id") String objectId,
+			@PathVariable("superapp") String superapp) {
 		
-		return null;
-		
+		return this.objectService
+				.getObjectById(objectId, superapp)
+				.orElseThrow(()->new ResourceNotFoundException("ObjectEntity with id: " + objectId 
+						+ " and superapp name: " + superapp + " Does not exist in database"));
 	}
 	
 	@GetMapping(
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<ObjectBoundary> getAllObjects () {
+	public ObjectBoundary[] getAllObjects () {
 		
-		return null;
+		return this.objectService.getAllObjects()
+				.toArray(new ObjectBoundary[0]);
 	}
 }

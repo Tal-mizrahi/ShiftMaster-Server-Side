@@ -1,4 +1,4 @@
-package demo;
+package demo.objects;
 
 public class Location {
 
@@ -6,7 +6,7 @@ public class Location {
 	private Double lng;
 	
 	public Location() {
-
+		
 	}
 
 	public Location(Double lat, Double lng) {

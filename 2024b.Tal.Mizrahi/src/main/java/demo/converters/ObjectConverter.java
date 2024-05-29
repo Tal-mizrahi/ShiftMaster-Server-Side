@@ -1,20 +1,29 @@
 package demo.converters;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.UUID;
+
 import org.springframework.stereotype.Component;
 
-import demo.CreatedBy;
-import demo.Location;
-import demo.ObjectId;
-import demo.UserId;
 import demo.boundaries.ObjectBoundary;
 import demo.entities.ObjectEntity;
+import demo.objects.CreatedBy;
+import demo.objects.Location;
+import demo.objects.ObjectId;
+import demo.objects.UserId;
 
 @Component
 public class ObjectConverter {
 
 	public ObjectEntity toEntity(ObjectBoundary boundary) {
 		ObjectEntity entity = new ObjectEntity();
+		
+		entity.setObjectId(boundary.getObjectId().getSuperApp() 
+				   + "#" 
+				   + boundary.getObjectId().getId());
 
+		entity.setCreationTimesTamp(boundary.getCreationTimesTamp());
 		entity.setType(boundary.getType());
 		entity.setAlias(boundary.getAlias());
 		String createdBy = boundary
@@ -26,13 +35,27 @@ public class ObjectConverter {
 				.getCreatedBy()
 				.getUserId()
 				.getEmail();
-		String lat = boundary.getLocation().getLat() == null ? "0" :  boundary.getLocation().getLat().toString();
-		String lng = boundary.getLocation().getLng() == null ? "0" :  boundary.getLocation().getLng().toString();
-		entity.setLocation(lat + "#" + lng);
-		entity.setActive(boundary.getActive());
 		entity.setCreatedBy(createdBy);
-		entity.setObjectDetails(boundary.getObjectDetails());
 		
+		if (
+				boundary.getLocation() == null
+				|| boundary.getLocation().getLat() == null
+				|| boundary.getLocation().getLng() == null
+				) {
+			entity.setLocation("0.0#0.0");
+		} else {
+			entity.setLocation(
+					boundary.getLocation().getLat()
+					+ "#" 
+					+ boundary.getLocation().getLng());
+		}
+		
+			
+		entity.setActive(boundary.getActive());
+		if (boundary.getObjectDetails() != null)
+			entity.setObjectDetails(boundary.getObjectDetails());
+		else 
+			entity.setObjectDetails(new HashMap<>());		
 		return entity;
 	}
 
@@ -41,7 +64,6 @@ public class ObjectConverter {
 		
 		String[] id = entity.getObjectId().split("#");
 		boundary.setObjectId(new ObjectId(id[0], id[1]));
-		System.err.println(id);
 		boundary.setType(entity.getType());
 		boundary.setAlias(entity.getAlias());
 		String[] location = entity.getLocation().split("#");

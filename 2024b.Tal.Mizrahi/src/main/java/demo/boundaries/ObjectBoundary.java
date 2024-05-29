@@ -1,17 +1,19 @@
 package demo.boundaries;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
-import demo.CreatedBy;
-import demo.Location;
-import demo.ObjectId;
+import demo.objects.CreatedBy;
+import demo.objects.Location;
+import demo.objects.ObjectId;
 
 public class ObjectBoundary {
 	
 	private ObjectId objectId;
     private String type;
     private String alias;
+    
     private Location location;
     private Boolean active;
     private Date creationTimesTamp;
@@ -19,6 +21,7 @@ public class ObjectBoundary {
     private Map<String, Object> objectDetails;
 	
     public ObjectBoundary() {
+    	objectDetails = new HashMap<>();
 	}
 
 	public ObjectId getObjectId() {
@@ -84,7 +87,7 @@ public class ObjectBoundary {
 	public void setLocation(Location location) {
 		this.location = location;
 	}
-	
+		
 	@Override
 	public String toString() {
 		return "ObjectBoundary [objectId=" + objectId 

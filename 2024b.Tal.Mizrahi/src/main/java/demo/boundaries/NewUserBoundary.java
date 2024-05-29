@@ -1,6 +1,6 @@
 package demo.boundaries;
 
-import demo.RolesEnum;
+import demo.objects.RolesEnum;
 
 public class NewUserBoundary {
 	
@@ -31,6 +31,7 @@ public class NewUserBoundary {
 			if (r.name().equals(role))
 				this.role = r;
 		}
+	
 	}
 
 	public String getUsername() {

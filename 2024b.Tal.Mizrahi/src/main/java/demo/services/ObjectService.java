@@ -9,9 +9,9 @@ public interface ObjectService {
 
 	public ObjectBoundary createObject(ObjectBoundary boundary);
 	
-	public void updateObject(String objectId, ObjectBoundary boundary);
+	public void updateObject(String objectId, String superapp, ObjectBoundary boundary);
 	
-	public Optional<ObjectBoundary> getObjectById(String objectId);
+	public Optional<ObjectBoundary> getObjectById(String objectId, String superapp);
 	
 	public List<ObjectBoundary> getAllObjects ();
 	

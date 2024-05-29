@@ -1,6 +1,6 @@
 package demo.entities;
 
-import demo.RolesEnum;
+import demo.objects.RolesEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

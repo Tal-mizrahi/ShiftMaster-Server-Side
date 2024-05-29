@@ -1,16 +1,20 @@
 package demo.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import demo.boundaries.ObjectBoundary;
+import demo.controllers.ResourceNotFoundException;
 import demo.converters.ObjectConverter;
 import demo.crud.ObjectCrud;
 import demo.entities.ObjectEntity;
+import demo.objects.ObjectId;
 
 @Service
 public class ObjectServiceImplementation implements ObjectService {
@@ -30,34 +34,96 @@ public class ObjectServiceImplementation implements ObjectService {
 	}
 
 	@Override
+	@Transactional(readOnly = false)
 	public ObjectBoundary createObject(ObjectBoundary boundary) {
+		boundary.setCreationTimesTamp(new Date());
+		boundary.setObjectId(new ObjectId(springApplicationName
+				, UUID.randomUUID().toString()));
+		
+		if (boundary.getType() == null) {
+			throw new BadInputException("Object type must be not null!");
+		}
+		
+		if (boundary.getActive() == null) {
+			throw new BadInputException("Object active must be not null!");
+		}
+		
+		if (boundary.getAlias() == null) {
+			
+			throw new BadInputException("Object alias must be not null!");
+		}
+		
+		if (
+				boundary.getCreatedBy() == null 
+				|| boundary.getCreatedBy().getUserId() == null
+				|| boundary.getCreatedBy().getUserId().getSuperApp() == null
+				|| boundary.getCreatedBy().getUserId().getEmail() == null
+				){
+					throw new BadInputException("You must specify the superapp name and the email!");
+				}
 		ObjectEntity entity = objectConverter.toEntity(boundary);
-		
-		entity.setObjectId(springApplicationName 
-						   + "#" 
-						   + UUID.randomUUID().toString());
-		
 		entity = objectCrud.save(entity);
 		System.err.println("Saved in DB the object: " + entity);
 		return objectConverter.toBoundary(entity);
 	}
 
 	@Override
-	public void updateObject(String objectId, ObjectBoundary boundary) {
-		// TODO Auto-generated method stub
+	@Transactional(readOnly = false)
+	public void updateObject(String objectId, String superapp, ObjectBoundary boundary) {
+		String id = superapp + "#" + objectId;
+		ObjectEntity entity = this.objectCrud
+				.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("ObjectEntity with id: " + objectId 
+						+ " and superapp " + superapp + " Does not exist in database"));
+		
+		if (boundary.getType() != null) 
+			entity.setType(boundary.getType());
+		
+		if (boundary.getAlias() != null) 
+			entity.setAlias(boundary.getAlias());
+		
+		if (boundary.getActive() != null) 
+			entity.setActive(boundary.getActive());
+		
+		if (boundary.getObjectDetails() != null) 
+			entity.setObjectDetails(boundary.getObjectDetails());
+		
+		
+		if (boundary.getLocation().getLat() != null && boundary.getLocation().getLng() != null) {
+			String location = boundary.getLocation().getLat() 
+					+ "#"
+					+ boundary.getLocation().getLng();
+			entity.setLocation(location);
+		}
+		
+		entity = this.objectCrud.save(entity);
+			
+		System.err.println("updated in database: " + entity );
 		
 	}
 
 	@Override
-	public Optional<ObjectBoundary> getObjectById(String objectId) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+	@Transactional(readOnly = true)
+	public Optional<ObjectBoundary> getObjectById(String objectId, String superapp) {
+		String id = superapp + "#" + objectId;
+		Optional<ObjectEntity> optionalEntity = this.objectCrud.findById(id);
+
+		if (!optionalEntity.isEmpty()) {
+			throw new ResourceNotFoundException("ObjectEntity with id: " + objectId 
+					+ " and superapp name: " + superapp + " Does not exist in database");
+		}
+
+		return optionalEntity.map(this.objectConverter::toBoundary);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<ObjectBoundary> getAllObjects() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.objectCrud.findAll() // List<ObjectEntity>
+				.stream() // Stream<ObjectEntity>
+				.peek(entity -> System.err.println("* " + entity)) // Prints all items.
+				.map(this.objectConverter::toBoundary) // Stream<ObjectBoundary>
+				.toList(); // List<ObjectBoundary>
 	}
 
 }

@@ -1,7 +1,7 @@
 package demo.boundaries;
 
-import demo.RolesEnum;
-import demo.UserId;
+import demo.objects.RolesEnum;
+import demo.objects.UserId;
 
 public class UserBoundary {
 	

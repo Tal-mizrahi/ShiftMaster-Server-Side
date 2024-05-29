@@ -1,4 +1,4 @@
-package demo;
+package demo.objects;
 
 public class CommandId {
 		
@@ -7,6 +7,16 @@ public class CommandId {
 		private String id;
 		
 		public CommandId () {} 
+		
+		
+
+		public CommandId(String superAppName, String miniApp, String id) {
+			this.superAppName = superAppName;
+			this.miniApp = miniApp;
+			this.id = id;
+		}
+
+
 
 		public String getSuperAppName() {
 			return superAppName;

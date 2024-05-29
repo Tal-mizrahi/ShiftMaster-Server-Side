@@ -42,7 +42,7 @@ public class UserController {
 				@PathVariable("superapp") String superapp){
 			return this.userService
 				.getUser(email, superapp)
-				.orElseThrow(()->new RuntimeException("could not find user by email: " + email
+				.orElseThrow(()->new ResourceNotFoundException("could not find user by email: " + email
 						+ " and by superapp: " + superapp));
 		}
 	

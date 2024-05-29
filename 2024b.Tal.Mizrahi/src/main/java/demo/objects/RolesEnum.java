@@ -1,4 +1,4 @@
-package demo;
+package demo.objects;
 
 public enum RolesEnum {
     ADMIN,

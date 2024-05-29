@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import demo.boundaries.NewUserBoundary;
 import demo.boundaries.UserBoundary;
+import demo.controllers.ResourceNotFoundException;
 import demo.converters.UserConverter;
 import demo.crud.UserCrud;
 import demo.entities.UserEntity;
@@ -35,6 +36,17 @@ public class UserServiceImplementation implements UserService {
 	@Transactional(readOnly = false)
 	public UserBoundary createNewUser(NewUserBoundary boundary) {
 		
+		if ( boundary.getEmail() == null) {
+			throw new RuntimeException("You must enter email!");
+		}
+		if(boundary.getUsername() == null ) {
+			throw new RuntimeException("You must enter username!");
+		} 
+		
+		if (boundary.getRole() == null) {
+			throw new RuntimeException("You must enter the userRole - ADMIN, SUPERAPP_USER, MINIAPP_USER");
+		}
+		
 		UserEntity entity = userConverter.toEntity(boundary);
 		entity.setUserId(springApplicationName 
 						+ "#" 
@@ -52,10 +64,8 @@ public class UserServiceImplementation implements UserService {
 		String id = superapp + "#" + email;
 		Optional<UserEntity> optionalEntity = this.userCrud.findById(id);	
 		
-		if (!optionalEntity.isEmpty()) {
-			System.err.println("Read from Database: " + optionalEntity.get());
-		}else {
-			System.err.println("UserEntity with email: " + email 
+		if (optionalEntity.isEmpty()) {
+			throw new ResourceNotFoundException("UserEntity with email: " + email 
 					+ " and superapp " + superapp + " Does not exist in database");
 		}
 		
@@ -64,11 +74,12 @@ public class UserServiceImplementation implements UserService {
 	}
 
 	@Override
+	@Transactional(readOnly = false)
 	public void updateDetails(String email, String superapp, UserBoundary update) {
 		String id = superapp + "#" + email;
 		UserEntity entity = this.userCrud
 				.findById(id)
-				.orElseThrow(() -> new RuntimeException("UserEntity with email: " + email 
+				.orElseThrow(() -> new ResourceNotFoundException("UserEntity with email: " + email 
 						+ " and superapp " + superapp + " Does not exist in database"));
 
 		if (update.getUsername() != null)

@@ -3,12 +3,12 @@ package demo.entities;
 import java.util.Date;
 import java.util.Map;
 
+import demo.objects.CommandId;
+import demo.objects.CreatedBy;
+import demo.objects.InvokedBy;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.MapKeyColumn;
-import demo.CommandId;
-import demo.CreatedBy;
-import demo.InvokedBy;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -33,9 +33,11 @@ public class CommandEntity {
 	private String command;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date invocationTimeStamp;
+	private Date invocationTimesTamp;
 	
 	private String invokedBy;
+	
+	private String targetObject;
 		
 	//@Transient
 	@Lob
@@ -69,12 +71,12 @@ public class CommandEntity {
 		this.command = command;
 	}
 	
-	public Date getInvocationTimeStamp() {
-		return invocationTimeStamp;
+	public Date getInvocationTimesTamp() {
+		return invocationTimesTamp;
 	}
 	
-	public void setInvocationTimeStamp(Date invocationTimeStamp) {
-		this.invocationTimeStamp = invocationTimeStamp;
+	public void setInvocationTimesTamp(Date invocationTimesTamp) {
+		this.invocationTimesTamp = invocationTimesTamp;
 	}
 	
 	 
@@ -94,15 +96,25 @@ public class CommandEntity {
 		this.commandAttributes = commandAttributes;
 	}
 
+	public String getTargetObject() {
+		return targetObject;
+	}
+	
+	public void setTargetObject(String targetObject) {
+		this.targetObject = targetObject;
+	}
+	
 	@Override
 	public String toString() {
 		return "CommandEntity [commandId=" + commandId 
 				+ ", miniAppName=" + miniAppName 
 				+ ", command=" + command
-				+ ", invocationTimeStamp=" + invocationTimeStamp 
+				+ ", invocationTimesTamp=" + invocationTimesTamp 
 				+ ", invokedBy=" + invokedBy 
+				+ ", targetObject=" + targetObject
 				+ ", commandAttributes=" + commandAttributes + "]";
 	}
+
 		
  
 }
