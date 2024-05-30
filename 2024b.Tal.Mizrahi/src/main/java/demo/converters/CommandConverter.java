@@ -1,5 +1,7 @@
 package demo.converters;
 
+import java.util.HashMap;
+
 import org.springframework.stereotype.Component;
 
 import demo.boundaries.MiniAppCommandBoundary;
@@ -29,7 +31,10 @@ public class CommandConverter {
 				boundary.getInvokedBy().getUserId().getSuperApp()
 				+ "#"
 				+ boundary.getInvokedBy().getUserId().getEmail());
-		entity.setCommandAttributes(boundary.getCommandAttribute());
+		if (boundary.getCommandAttribute() != null)
+			entity.setCommandAttributes(boundary.getCommandAttribute());
+		else 
+			entity.setCommandAttributes(new HashMap<>());
 		entity.setTargetObject(
 				boundary.getTargetObject().getObjectId().getSuperApp()
 				+ "#"

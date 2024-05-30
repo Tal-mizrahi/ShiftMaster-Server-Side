@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import demo.boundaries.ObjectBoundary;
-import demo.controllers.ResourceNotFoundException;
 import demo.converters.ObjectConverter;
 import demo.crud.ObjectCrud;
 import demo.entities.ObjectEntity;
@@ -73,7 +72,7 @@ public class ObjectServiceImplementation implements ObjectService {
 		String id = superapp + "#" + objectId;
 		ObjectEntity entity = this.objectCrud
 				.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("ObjectEntity with id: " + objectId 
+				.orElseThrow(() -> new NotFoundException("ObjectEntity with id: " + objectId 
 						+ " and superapp " + superapp + " Does not exist in database"));
 		
 		if (boundary.getType() != null) 
@@ -109,7 +108,7 @@ public class ObjectServiceImplementation implements ObjectService {
 		Optional<ObjectEntity> optionalEntity = this.objectCrud.findById(id);
 
 		if (!optionalEntity.isEmpty()) {
-			throw new ResourceNotFoundException("ObjectEntity with id: " + objectId 
+			throw new NotFoundException("ObjectEntity with id: " + objectId 
 					+ " and superapp name: " + superapp + " Does not exist in database");
 		}
 

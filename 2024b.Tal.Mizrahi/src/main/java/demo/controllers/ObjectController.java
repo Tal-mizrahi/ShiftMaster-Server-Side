@@ -1,8 +1,5 @@
 package demo.controllers;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import demo.boundaries.ObjectBoundary;
 import demo.services.ObjectService;
+import demo.services.NotFoundException;
 
 @RestController
 @RequestMapping(path ={"/superapp/objects"})
@@ -41,7 +39,7 @@ public class ObjectController {
 	public void updateObject(
 			@PathVariable("id") String objectId,
 			@PathVariable("superapp") String superapp,
-			ObjectBoundary boundary) {
+			@RequestBody ObjectBoundary boundary) {
     	
     	this.objectService.updateObject(objectId, superapp, boundary);
 		
@@ -56,7 +54,7 @@ public class ObjectController {
 		
 		return this.objectService
 				.getObjectById(objectId, superapp)
-				.orElseThrow(()->new ResourceNotFoundException("ObjectEntity with id: " + objectId 
+				.orElseThrow(()->new NotFoundException("ObjectEntity with id: " + objectId 
 						+ " and superapp name: " + superapp + " Does not exist in database"));
 	}
 	

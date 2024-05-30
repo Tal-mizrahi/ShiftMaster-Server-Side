@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import demo.boundaries.NewUserBoundary;
 import demo.boundaries.UserBoundary;
+import demo.services.NotFoundException;
 import demo.services.UserService;
 
 @RestController
@@ -42,7 +43,7 @@ public class UserController {
 				@PathVariable("superapp") String superapp){
 			return this.userService
 				.getUser(email, superapp)
-				.orElseThrow(()->new ResourceNotFoundException("could not find user by email: " + email
+				.orElseThrow(()->new NotFoundException("could not find user by email: " + email
 						+ " and by superapp: " + superapp));
 		}
 	

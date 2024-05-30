@@ -3,6 +3,7 @@ package demo.entities;
 import java.util.Date;
 import java.util.Map;
 
+import demo.converters.ApplicationMapToStringConverter;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Convert;

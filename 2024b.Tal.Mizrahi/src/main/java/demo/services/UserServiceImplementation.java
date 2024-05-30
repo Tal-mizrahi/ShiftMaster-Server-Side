@@ -8,10 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import demo.boundaries.NewUserBoundary;
 import demo.boundaries.UserBoundary;
-import demo.controllers.ResourceNotFoundException;
 import demo.converters.UserConverter;
 import demo.crud.UserCrud;
 import demo.entities.UserEntity;
+import demo.objects.InputValidation;
 
 @Service
 public class UserServiceImplementation implements UserService {
@@ -36,14 +36,16 @@ public class UserServiceImplementation implements UserService {
 	@Transactional(readOnly = false)
 	public UserBoundary createNewUser(NewUserBoundary boundary) {
 		
-		if ( boundary.getEmail() == null) {
-			throw new BadInputException("You must enter email!");
+		// check if the email is not null and valid
+		if (!InputValidation.isValidEmail(boundary.getEmail())) { 
+			throw new BadInputException("You must enter valid email! ");
 		}
 		if(boundary.getUsername() == null ) {
 			throw new BadInputException("You must enter username!");
 		} 
 		
-		if (boundary.getRole() == null) {
+		// check if the role is null and if the role is valid 
+		if (boundary.getRole() == null || !InputValidation.isValidRole(boundary.getRole().name())) {
 			throw new BadInputException("You must enter the userRole - ADMIN, SUPERAPP_USER, MINIAPP_USER");
 		}
 		
@@ -65,7 +67,7 @@ public class UserServiceImplementation implements UserService {
 		Optional<UserEntity> optionalEntity = this.userCrud.findById(id);	
 		
 		if (optionalEntity.isEmpty()) {
-			throw new ResourceNotFoundException("UserEntity with email: " + email 
+			throw new NotFoundException("UserEntity with email: " + email 
 					+ " and superapp " + superapp + " Does not exist in database");
 		}
 		
@@ -79,7 +81,7 @@ public class UserServiceImplementation implements UserService {
 		String id = superapp + "#" + email;
 		UserEntity entity = this.userCrud
 				.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("UserEntity with email: " + email 
+				.orElseThrow(() -> new NotFoundException("UserEntity with email: " + email 
 						+ " and superapp " + superapp + " Does not exist in database"));
 
 		if (update.getUsername() != null)

@@ -3,6 +3,7 @@ package demo.entities;
 import java.util.Date;
 import java.util.Map;
 
+import demo.converters.ApplicationMapToStringConverter;
 import demo.objects.CommandId;
 import demo.objects.CreatedBy;
 import demo.objects.InvokedBy;
@@ -19,8 +20,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import jakarta.persistence.Transient;
-
 
 @Entity
 @Table(name = "COMMAND_TABLE")

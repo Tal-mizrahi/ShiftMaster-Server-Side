@@ -29,7 +29,7 @@ public class CommandController {
 	public MiniAppCommandBoundary[] createObject(
 			@PathVariable("miniAppName") String miniAppName,
 			@RequestBody MiniAppCommandBoundary boundary) {
-		MiniAppCommandBoundary[] jsonArr = new MiniAppCommandBoundary[] {  commandService.invokeACommand(miniAppName, boundary) };
+		MiniAppCommandBoundary[] jsonArr = new MiniAppCommandBoundary[] { commandService.invokeACommand(miniAppName, boundary) };
 		
 		return jsonArr;
 	}

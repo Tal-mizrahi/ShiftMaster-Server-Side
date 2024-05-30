@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import demo.boundaries.NewUserBoundary;
 import demo.boundaries.UserBoundary;
 import demo.entities.UserEntity;
-import demo.objects.RolesEnum;
 import demo.objects.UserId;
 
 @Component

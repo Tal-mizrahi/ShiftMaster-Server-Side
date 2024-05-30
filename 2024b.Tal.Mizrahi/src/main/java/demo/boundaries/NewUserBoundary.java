@@ -25,13 +25,8 @@ public class NewUserBoundary {
 		return role;
 	}
 
-	public void setRole(String role) {
-		this.role = null;
-		for (RolesEnum r : RolesEnum.values()) {
-			if (r.name().equals(role))
-				this.role = r;
-		}
-	
+	public void setRole(RolesEnum role) {
+		this.role = role;
 	}
 
 	public String getUsername() {

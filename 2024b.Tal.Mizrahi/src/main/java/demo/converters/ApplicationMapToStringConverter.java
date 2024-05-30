@@ -1,4 +1,4 @@
-package demo.entities;
+package demo.converters;
 
 import java.util.Map;
 

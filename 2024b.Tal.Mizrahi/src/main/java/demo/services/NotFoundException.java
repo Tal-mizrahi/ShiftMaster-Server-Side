@@ -1,28 +1,28 @@
-package demo.controllers;
+package demo.services;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.NOT_FOUND)
-public class ResourceNotFoundException extends RuntimeException {
+public class NotFoundException extends RuntimeException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6113232501329139274L;
 	
-	public ResourceNotFoundException() {
+	public NotFoundException() {
 	}
 
-	public ResourceNotFoundException(String message) {
+	public NotFoundException(String message) {
 		super(message);
 	} 
 
-	public ResourceNotFoundException(Throwable cause) {
+	public NotFoundException(Throwable cause) {
 		super(cause);
 	}
 
-	public ResourceNotFoundException(String message, Throwable cause) {
+	public NotFoundException(String message, Throwable cause) {
 		super(message, cause);
 	}
 	
