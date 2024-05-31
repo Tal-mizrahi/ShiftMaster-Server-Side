@@ -107,7 +107,7 @@ public class ObjectServiceImplementation implements ObjectService {
 		String id = superapp + "#" + objectId;
 		Optional<ObjectEntity> optionalEntity = this.objectCrud.findById(id);
 
-		if (!optionalEntity.isEmpty()) {
+		if (optionalEntity.isEmpty()) {
 			throw new NotFoundException("ObjectEntity with id: " + objectId 
 					+ " and superapp name: " + superapp + " Does not exist in database");
 		}
