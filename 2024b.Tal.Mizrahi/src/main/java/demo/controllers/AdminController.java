@@ -22,7 +22,7 @@ public class AdminController {
 		}
 		
 		@DeleteMapping (
-				path = { "/admin/users" })
+				path = { "/users" })
 		public void deleteAllUsers() {
 			this.adminService.deleteAllUsers();
 		}
