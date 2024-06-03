@@ -18,7 +18,7 @@ public class CommandConverter {
 	public CommandEntity toEntity(MiniAppCommandBoundary boundary) {
 		CommandEntity entity = new CommandEntity();
 		entity.setCommandId(
-				boundary.getCommandId().getSuperAppName()
+				boundary.getCommandId().getSuperApp()
 				+ "#"
 				+ boundary.getCommandId().getMiniApp()
 				+ "#"

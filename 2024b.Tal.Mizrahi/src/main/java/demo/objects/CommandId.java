@@ -2,7 +2,7 @@ package demo.objects;
 
 public class CommandId {
 		
-		private String superAppName;
+		private String superApp;
 		private String miniApp;
 		private String id;
 		
@@ -11,19 +11,19 @@ public class CommandId {
 		
 
 		public CommandId(String superAppName, String miniApp, String id) {
-			this.superAppName = superAppName;
+			this.superApp = superAppName;
 			this.miniApp = miniApp;
 			this.id = id;
 		}
 
 
 
-		public String getSuperAppName() {
-			return superAppName;
+		public String getSuperApp() {
+			return superApp;
 		}  
 
-		public void setSuperAppName(String superAppName) {
-			this.superAppName = superAppName;
+		public void setSuperApp(String superApp) {
+			this.superApp = superApp;
 		} 
 
 		public String getMiniApp() {
@@ -44,7 +44,7 @@ public class CommandId {
 		
 		@Override
 		public String toString() {
-			return "CommandId [superAppName=" + superAppName 
+			return "CommandId [superAppName=" + superApp 
 					+ ", miniApp=" + miniApp 
 					+ ", id=" + id + "]";
 		}
