@@ -1,7 +1,6 @@
 package demo.boundaries;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 import demo.objects.CreatedBy;
@@ -20,9 +19,7 @@ public class ObjectBoundary {
     private CreatedBy createdBy;
     private Map<String, Object> objectDetails;
 	
-    public ObjectBoundary() {
-    	objectDetails = new HashMap<>();
-	}
+    public ObjectBoundary() {}
 
 	public ObjectId getObjectId() {
 		return objectId;

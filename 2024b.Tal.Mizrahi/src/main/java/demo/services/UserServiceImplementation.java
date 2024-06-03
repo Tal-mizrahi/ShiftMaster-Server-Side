@@ -40,12 +40,26 @@ public class UserServiceImplementation implements UserService {
 		if (!InputValidation.isValidEmail(boundary.getEmail())) { 
 			throw new BadInputException("You must enter valid email! ");
 		}
-		if(boundary.getUsername() == null ) {
+		
+		if (userCrud.existsById(boundary.getEmail()))
+			throw new ConflictException("This user is already exists!");
+			
+		if(
+				boundary.getUsername() == null 
+				|| boundary.getUsername().isBlank()) {
 			throw new BadInputException("You must enter username!");
 		} 
 		
+		if(
+				boundary.getAvatar() == null 
+				|| boundary.getAvatar().isBlank()) {
+			throw new BadInputException("You must enter avatar!");
+		} 
+		
 		// check if the role is null and if the role is valid 
-		if (boundary.getRole() == null || !InputValidation.isValidRole(boundary.getRole().name())) {
+		if (
+				boundary.getRole() == null 
+				|| !InputValidation.isValidRole(boundary.getRole().name())) {
 			throw new BadInputException("You must enter the userRole - ADMIN, SUPERAPP_USER, MINIAPP_USER");
 		}
 		
@@ -84,13 +98,13 @@ public class UserServiceImplementation implements UserService {
 				.orElseThrow(() -> new NotFoundException("UserEntity with email: " + email 
 						+ " and superapp " + superapp + " Does not exist in database"));
 
-		if (update.getUsername() != null)
+		if (update.getUsername() != null && !update.getUsername().isBlank())
 			entity.setUsername(update.getUsername());
 		
 		if (update.getRole() != null) 
 			entity.setRole(update.getRole());
 			
-		if (update.getAvatar() != null) 
+		if (update.getAvatar() != null && !update.getAvatar().isBlank()) 
 				entity.setAvatar(update.getAvatar());
 		
 		this.userCrud.save(entity);

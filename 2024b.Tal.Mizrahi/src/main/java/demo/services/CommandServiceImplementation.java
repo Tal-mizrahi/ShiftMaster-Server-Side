@@ -12,6 +12,7 @@ import demo.converters.CommandConverter;
 import demo.crud.CommandCrud;
 import demo.entities.CommandEntity;
 import demo.objects.CommandId;
+import demo.objects.InputValidation;
 
 @Service
 public class CommandServiceImplementation implements CommandService {
@@ -29,39 +30,37 @@ public class CommandServiceImplementation implements CommandService {
 		this.commandCrud = commandCrud;
 		this.commandConverter = commandConverter;
 	}
- 
+
 	@Override
 	@Transactional(readOnly = false)
 	public MiniAppCommandBoundary invokeACommand(String miniAppName, MiniAppCommandBoundary boundary) {
 		boundary.setInvocationTimesTamp(new Date());
-		boundary.setCommandId(new CommandId(springApplicationName
-				, miniAppName
-				, UUID.randomUUID().toString()));
-		if (boundary.getCommand() == null) {
-			throw new BadInputException("You must enter command"); 
+		boundary.setCommandId(
+				new CommandId(
+						springApplicationName
+						, miniAppName
+						, UUID.randomUUID().toString()));
+		if (boundary.getCommand() == null 
+				|| boundary.getCommand().isBlank()) {
+			throw new BadInputException("You must enter command");
 		}
-		if (
-				boundary.getTargetObject() == null
+		if (boundary.getTargetObject() == null 
 				|| boundary.getTargetObject().getObjectId() == null
 				|| boundary.getTargetObject().getObjectId().getId() == null
-				|| boundary.getTargetObject().getObjectId().getSuperApp() == null
-				) {
+				|| boundary.getTargetObject().getObjectId().getSuperApp() == null) {
 			throw new BadInputException("You must enter target object!");
 		}
-		if (
-				boundary.getInvokedBy() == null
-				|| boundary.getInvokedBy().getUserId() == null
+		if (boundary.getInvokedBy() == null || boundary.getInvokedBy().getUserId() == null
 				|| boundary.getInvokedBy().getUserId().getSuperApp() == null
-				|| boundary.getInvokedBy().getUserId().getSuperApp() == null
-				) {
-			throw new BadInputException("You must enter who invoked the command!");
+				|| !InputValidation.isValidEmail(boundary.getInvokedBy().getUserId().getEmail())) {
+			throw new BadInputException(
+					"You must enter who invoked the command by " + "giving the superapp name and valid email!");
 		}
-		
+
 		CommandEntity entity = commandConverter.toEntity(boundary);
 		entity = commandCrud.save(entity);
 		System.err.println("Saved in DB the object: " + entity);
 		return commandConverter.toBoundary(entity);
 	}
-	
 
 }

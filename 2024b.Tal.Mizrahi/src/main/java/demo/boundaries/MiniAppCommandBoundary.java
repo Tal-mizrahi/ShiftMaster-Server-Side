@@ -17,9 +17,7 @@ public class MiniAppCommandBoundary {
 	private InvokedBy invokedBy;
 	private Map<String, Object> commandAttribute;
 	
-	public MiniAppCommandBoundary() {
-		commandAttribute = new HashMap<>();
-	}
+	public MiniAppCommandBoundary() {}
 
 	public CommandId getCommandId() {
 		return commandId;

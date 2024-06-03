@@ -1,7 +1,6 @@
 package demo.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import demo.boundaries.MiniAppCommandBoundary;
 import demo.boundaries.UserBoundary;

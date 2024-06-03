@@ -1,7 +1,6 @@
 package demo.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -9,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import demo.boundaries.MiniAppCommandBoundary;
 import demo.boundaries.UserBoundary;
 import demo.converters.CommandConverter;
-import demo.converters.ObjectConverter;
 import demo.converters.UserConverter;
 import demo.crud.CommandCrud;
 import demo.crud.ObjectCrud;

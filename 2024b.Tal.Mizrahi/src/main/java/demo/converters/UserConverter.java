@@ -11,16 +11,11 @@ import demo.objects.UserId;
 public class UserConverter { // from NewUserBoundry to UserEntity
 	
 	
-	public UserEntity toEntity(NewUserBoundary boundary) {
+	public UserEntity toEntity(NewUserBoundary boundary) { //
 	
 		UserEntity entity = new UserEntity();		
 		entity.setUsername(boundary.getUsername());
-		if (entity.getAvatar() != null) {
-			
-			entity.setAvatar(boundary.getAvatar());
-		} else {
-			entity.setAvatar(boundary.getUsername().substring(0, 1)); // Put as avatar the first char of username
-		} 
+		entity.setAvatar(boundary.getAvatar());
 		entity.setRole(boundary.getRole());
 
 		return entity;

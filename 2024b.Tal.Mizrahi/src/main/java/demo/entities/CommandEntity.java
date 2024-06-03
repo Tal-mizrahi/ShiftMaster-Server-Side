@@ -4,18 +4,9 @@ import java.util.Date;
 import java.util.Map;
 
 import demo.converters.ApplicationMapToStringConverter;
-import demo.objects.CommandId;
-import demo.objects.CreatedBy;
-import demo.objects.InvokedBy;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
-import jakarta.persistence.MapKeyColumn;
-import jakarta.persistence.CollectionTable;
-import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
