@@ -37,8 +37,8 @@ public class ObjectController {
             consumes={MediaType.APPLICATION_JSON_VALUE},
             produces={MediaType.APPLICATION_JSON_VALUE})
 	public void updateObject(
-			@PathVariable("id") String objectId,
 			@PathVariable("superapp") String superapp,
+			@PathVariable("id") String objectId,
 			@RequestBody ObjectBoundary boundary) {
     	
     	this.objectService.updateObject(objectId, superapp, boundary);
@@ -49,8 +49,8 @@ public class ObjectController {
 			path = { "/{superapp}/{id}" }, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ObjectBoundary getObjectById(
-			@PathVariable("id") String objectId,
-			@PathVariable("superapp") String superapp) {
+			@PathVariable("superapp") String superapp,
+			@PathVariable("id") String objectId) {
 		
 		return this.objectService
 				.getObjectById(objectId, superapp)

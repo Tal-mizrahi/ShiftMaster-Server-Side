@@ -39,8 +39,8 @@ public class UserController {
 			path = { "login/{superapp}/{email}" }, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 		public UserBoundary loginUser(
-				@PathVariable("email") String email,
-				@PathVariable("superapp") String superapp){
+				@PathVariable("superapp") String superapp,
+				@PathVariable("email") String email) {
 			return this.userService
 				.getUser(email, superapp)
 				.orElseThrow(()->new NotFoundException("could not find user by email: " + email
@@ -52,8 +52,8 @@ public class UserController {
             consumes={MediaType.APPLICATION_JSON_VALUE},
             produces={MediaType.APPLICATION_JSON_VALUE})
     public void updateDetails(
-    			@PathVariable("userEmail") String email,
     			@PathVariable("superapp") String superapp,
+    			@PathVariable("userEmail") String email,
                 @RequestBody UserBoundary boundary) {
     		userService.updateDetails(email,superapp, boundary);
     }

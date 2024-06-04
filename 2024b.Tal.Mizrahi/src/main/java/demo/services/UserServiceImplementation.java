@@ -79,12 +79,6 @@ public class UserServiceImplementation implements UserService {
 	public Optional<UserBoundary> getUser(String email, String superapp) {
 		String id = superapp + "#" + email;
 		Optional<UserEntity> optionalEntity = this.userCrud.findById(id);	
-		
-		if (optionalEntity.isEmpty()) {
-			throw new NotFoundException("UserEntity with email: " + email 
-					+ " and superapp " + superapp + " Does not exist in database");
-		}
-		
 		return optionalEntity
 				.map(this.userConverter::toBoundary);
 	}
