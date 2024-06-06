@@ -9,11 +9,11 @@ public interface ObjectService {
 
 	public ObjectBoundary createObject(ObjectBoundary boundary);
 	
-	public void updateObject(String objectId, String superapp, ObjectBoundary boundary);
+	public void updateObject(String objectId, String superapp, ObjectBoundary boundary, String userSuperapp, String email);
 	
-	public Optional<ObjectBoundary> getObjectById(String objectId, String superapp);
+	public Optional<ObjectBoundary> getObjectById(String objectId, String superapp, String userSuperapp, String email);
 	
-	public List<ObjectBoundary> getAllObjects ();
+	public List<ObjectBoundary> getAllObjects (String userSuperapp, String email, int size, int page);
 	
 }
  

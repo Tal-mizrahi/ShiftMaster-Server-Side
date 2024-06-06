@@ -7,16 +7,16 @@ import demo.boundaries.UserBoundary;
 
 public interface AdminService {
 
-	public void deleteAllUsers();
+	public void deleteAllUsers(String userSuperapp, String email);
 	
-	public void deleteAllObjects();
+	public void deleteAllObjects(String userSuperapp, String email);
 	
-	public void deleteAllCommandsHistory();
+	public void deleteAllCommandsHistory(String userSuperapp, String email);
 	
-	public List<UserBoundary> getAllUsers();
+	public List<UserBoundary> getAllUsers(String userSuperapp, String email, int size, int page);
 	
-	public List<MiniAppCommandBoundary> getAllCommands();
+	public List<MiniAppCommandBoundary> getAllCommands(String userSuperapp, String email, int size, int page);
 	
-	public List<MiniAppCommandBoundary> getCommandsOfSpecificMiniApp(String miniAppName);
+	public List<MiniAppCommandBoundary> getCommandsOfSpecificMiniApp(String miniAppName, String userSuperapp, String email, int size, int page);
 }
  

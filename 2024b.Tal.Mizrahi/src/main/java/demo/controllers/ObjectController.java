@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import demo.boundaries.ObjectBoundary;
 import demo.services.ObjectService;
@@ -39,9 +40,11 @@ public class ObjectController {
 	public void updateObject(
 			@PathVariable("superapp") String superapp,
 			@PathVariable("id") String objectId,
+			@RequestParam(name = "userSuperapp", required = true) String userSuperapp,
+			@RequestParam(name = "userEmail", required = true) String email,
 			@RequestBody ObjectBoundary boundary) {
     	
-    	this.objectService.updateObject(objectId, superapp, boundary);
+    	this.objectService.updateObject(objectId, superapp, boundary, userSuperapp, email);
 		
 	} 
 	
@@ -50,19 +53,25 @@ public class ObjectController {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ObjectBoundary getObjectById(
 			@PathVariable("superapp") String superapp,
-			@PathVariable("id") String objectId) {
+			@PathVariable("id") String objectId,
+			@RequestParam(name = "userSuperapp", required = true) String userSuperapp,
+			@RequestParam(name = "userEmail", required = true) String email) {
 		
 		return this.objectService
-				.getObjectById(objectId, superapp)
+				.getObjectById(objectId, superapp, userSuperapp, email)
 				.orElseThrow(()->new NotFoundException("ObjectEntity with id: " + objectId 
 						+ " and superapp name: " + superapp + " Does not exist in database"));
 	}
 	
 	@GetMapping(
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ObjectBoundary[] getAllObjects () {
+	public ObjectBoundary[] getAllObjects (
+			@RequestParam(name = "userSuperapp", required = true) String userSuperapp,
+			@RequestParam(name = "userEmail", required = true) String email,
+			@RequestParam(name = "size", required = false, defaultValue = "10") int size,
+			@RequestParam(name = "page", required = false, defaultValue = "0") int page) {
 		
-		return this.objectService.getAllObjects()
+		return this.objectService.getAllObjects(userSuperapp, email, size, page)
 				.toArray(new ObjectBoundary[0]);
 	}
 }

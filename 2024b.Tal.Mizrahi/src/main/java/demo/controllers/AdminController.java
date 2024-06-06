@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import demo.boundaries.MiniAppCommandBoundary;
@@ -21,40 +22,58 @@ public class AdminController {
 			this.adminService = adminService;
 		}
 		
+		//?userSuperapp={userSuperapp}&userEmail={email}
+		
 		@DeleteMapping (
 				path = { "/users" })
-		public void deleteAllUsers() {
-			this.adminService.deleteAllUsers();
+		public void deleteAllUsers(
+				@RequestParam(name = "userSuperapp", required = true) String userSuperapp,
+				@RequestParam(name = "userEmail", required = true) String email){
+			this.adminService.deleteAllUsers(userSuperapp, email);
 		}
 
 		@DeleteMapping (
 				path = { "/objects" })
-		public void deleteAllObjects() {
-			this.adminService.deleteAllObjects();
+		public void deleteAllObjects(
+				@RequestParam(name = "userSuperapp", required = true) String userSuperapp,
+				@RequestParam(name = "userEmail", required = true) String email) {
+			this.adminService.deleteAllObjects(userSuperapp, email);
 			
 		}
 
 		@DeleteMapping (
 				path = { "/miniapp" })
-		public void deleteAllCommandsHistory() {
-			this.adminService.deleteAllCommandsHistory();
+		public void deleteAllCommandsHistory(
+				@RequestParam(name = "userSuperapp", required = true) String userSuperapp,
+				@RequestParam(name = "userEmail", required = true) String email) {
+			this.adminService.deleteAllCommandsHistory(userSuperapp, email);
 		} 
+		
+		//?userSuperapp={userSuperapp}&userEmail={email}&size={size}&page={page}
 
 		@GetMapping(
 				path = {"/users"},
 				produces = MediaType.APPLICATION_JSON_VALUE)
-		public UserBoundary[] getAllUsers() {
+		public UserBoundary[] getAllUsers(
+				@RequestParam(name = "userSuperapp", required = true) String userSuperapp,
+				@RequestParam(name = "userEmail", required = true) String email,
+				@RequestParam(name = "size", required = false, defaultValue = "10") int size,
+				@RequestParam(name = "page", required = false, defaultValue = "0") int page) {
 			return adminService
-					.getAllUsers()
+					.getAllUsers(userSuperapp, email, size, page)
 					.toArray(new UserBoundary[0]);
 		}
 
 		@GetMapping(
 				path = {"/miniapp"},
 				produces = MediaType.APPLICATION_JSON_VALUE)
-		public MiniAppCommandBoundary[] getAllCommands() {
+		public MiniAppCommandBoundary[] getAllCommands(
+				@RequestParam(name = "userSuperapp", required = true) String userSuperapp,
+				@RequestParam(name = "userEmail", required = true) String email,
+				@RequestParam(name = "size", required = false, defaultValue = "10") int size,
+				@RequestParam(name = "page", required = false, defaultValue = "0") int page) {
 			return adminService
-					.getAllCommands()
+					.getAllCommands(userSuperapp, email, size, page)
 					.toArray(new MiniAppCommandBoundary[0]);
 		}
 
@@ -62,9 +81,13 @@ public class AdminController {
 				path = {"/miniapp/{miniAppName}"},
 				produces = MediaType.APPLICATION_JSON_VALUE)
 		public MiniAppCommandBoundary[] getCommandsOfSpecificMiniApp(
-				@PathVariable("miniAppName") String miniAppName) {
+				@PathVariable("miniAppName") String miniAppName,
+				@RequestParam(name = "userSuperapp", required = true) String userSuperapp,
+				@RequestParam(name = "userEmail", required = true) String email,
+				@RequestParam(name = "size", required = false, defaultValue = "10") int size,
+				@RequestParam(name = "page", required = false, defaultValue = "0") int page) {
 			return adminService
-					.getCommandsOfSpecificMiniApp(miniAppName)
+					.getCommandsOfSpecificMiniApp(miniAppName, userSuperapp, email, size, page)
 					.toArray(new MiniAppCommandBoundary[0]);
 		}
 }
