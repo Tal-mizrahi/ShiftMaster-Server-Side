@@ -62,7 +62,7 @@ public class CommandServiceImplementation implements CommandService {
 			throw new BadInputException("You must enter target object!");
 		}
 		
-		objectCrud.findByObjectIdAndActive(objId + "#" + objSupApp, true)
+		objectCrud.findByObjectIdAndActive(objSupApp+ "#" + objId, true)
 		.orElseThrow(()->new NotFoundException("ObjectEntity with id: " 
 				+ objId 
 				+ " and superapp name: " + objSupApp + " Does not exist in database"));
@@ -94,7 +94,7 @@ public class CommandServiceImplementation implements CommandService {
 				.findById(id)
 				.orElseThrow(() -> new NotFoundException("UserEntity with email: " + userId.getEmail() 
 						+ " and superapp " + userId.getSuperApp() + " Does not exist in database"));
-		if (!entity.getRole().equals(RolesEnum.SUPERAPP_USER))
+		if (!entity.getRole().equals(RolesEnum.MINIAPP_USER))
 			throw new ForbiddenException("UserEntity with email: " + userId.getEmail() 
 						+ " and superapp " + userId.getSuperApp() + " not have the permission");
 	}

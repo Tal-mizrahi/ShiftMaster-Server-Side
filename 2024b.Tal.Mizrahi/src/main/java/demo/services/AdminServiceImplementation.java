@@ -97,7 +97,7 @@ public class AdminServiceImplementation implements AdminService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<MiniAppCommandBoundary> getCommandsOfSpecificMiniApp(String miniAppName, String userSuperapp, String email, int page, int size) {
+	public List<MiniAppCommandBoundary> getCommandsOfSpecificMiniApp(String miniAppName, String userSuperapp, String email, int size, int page) {
 		checkAdminPermission(userSuperapp, email);
 		return commandCrud
 				.findAllByMiniAppName(miniAppName, PageRequest.of(page, size, Direction.ASC, "command"))
