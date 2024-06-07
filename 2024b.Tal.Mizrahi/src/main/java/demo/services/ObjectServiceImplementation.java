@@ -127,7 +127,7 @@ public class ObjectServiceImplementation implements ObjectService {
 	@Transactional(readOnly = true)
 	public List<ObjectBoundary> getAllObjects(String userSuperapp, String email, int size, int page) {
 		List<ObjectEntity> allEntities;
-		if(getUserRole(new UserId(userSuperapp, email)) == RolesEnum.ADMIN)
+		if(getUserRole(new UserId(userSuperapp, email)) == RolesEnum.SUPERAPP_USER)
 			allEntities = objectCrud.findAll(PageRequest.of(page, size, Direction.DESC, "creationTimesTamp")).toList();
 		else
 			allEntities = objectCrud.findAllByActive(true, PageRequest.of(page, size, Direction.DESC, "creationTimesTamp"));
@@ -138,6 +138,7 @@ public class ObjectServiceImplementation implements ObjectService {
 				.toList(); // List<ObjectBoundary>
 	}
 	
+	
 	public RolesEnum getUserRole(UserId userId) {
 		String id = userId.getSuperApp() 
 				+ "#" 
@@ -145,10 +146,11 @@ public class ObjectServiceImplementation implements ObjectService {
 		UserEntity entity = this.userCrud
 				.findById(id)
 				.orElseThrow(() -> new NotFoundException("UserEntity with email: " + userId.getEmail() 
-						+ " and superapp " + userId.getSuperApp() + " Does not exist in database"));
+				+ " and superapp " + userId.getSuperApp() + " Does not exist in database"));
 		if (entity.getRole() == RolesEnum.ADMIN)
 			throw new ForbiddenException("ADMIN users are not allowed!");
 		return entity.getRole();
 	}
 
 }
+

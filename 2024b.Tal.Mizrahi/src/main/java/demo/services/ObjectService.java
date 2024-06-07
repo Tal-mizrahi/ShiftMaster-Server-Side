@@ -14,6 +14,5 @@ public interface ObjectService {
 	public Optional<ObjectBoundary> getObjectById(String objectId, String superapp, String userSuperapp, String email);
 	
 	public List<ObjectBoundary> getAllObjects (String userSuperapp, String email, int size, int page);
-	
 }
  

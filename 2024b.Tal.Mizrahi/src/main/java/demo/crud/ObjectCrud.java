@@ -10,9 +10,11 @@ import org.springframework.data.repository.query.Param;
 import demo.entities.ObjectEntity;
 
 public interface ObjectCrud extends JpaRepository<ObjectEntity, String> {
-	
-	// SELECT * FROM OBJECT_TABLE WHERE objectId  = ? AND active = ?
-	public Optional<ObjectEntity> findByObjectIdAndActive(@Param("objectId") String objectId, @Param("active") boolean active);
-	
+
+	// SELECT * FROM OBJECT_TABLE WHERE objectId = ? AND active = ?
+	public Optional<ObjectEntity> findByObjectIdAndActive(@Param("objectId") String objectId,
+			@Param("active") boolean active);
+
 	public List<ObjectEntity> findAllByActive(@Param("active") boolean active, Pageable pageable);
-}  
+
+}
