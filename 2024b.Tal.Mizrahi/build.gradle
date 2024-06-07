@@ -1,14 +1,14 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.2.5'
-	id 'io.spring.dependency-management' version '1.1.4'
+	id 'org.springframework.boot' version '3.3.0'
+	id 'io.spring.dependency-management' version '1.1.5'
 }
 
 group = 'com.example'
 version = '1.0'
 
 java {
-	sourceCompatibility = '21'
+	sourceCompatibility = '21' 
 }
 
 repositories {
@@ -26,16 +26,15 @@ dependencies {
 	
 	//Runtime database
 	runtimeOnly 'com.h2database:h2'
-	
+	runtimeOnly 'org.postgresql:postgresql' // note postgresql support
+
 	developmentOnly 'org.springframework.boot:spring-boot-devtools' // Dev Utilities, rebuild and restart
+	developmentOnly 'org.springframework.boot:spring-boot-docker-compose' // note docker compose support
 	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test' // for tests, JUnit, assertJ, SpringBootTest
-	
-
-	
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher' // note test plan management support
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
-
