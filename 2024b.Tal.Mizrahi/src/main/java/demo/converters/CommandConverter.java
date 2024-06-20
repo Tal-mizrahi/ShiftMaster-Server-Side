@@ -18,17 +18,17 @@ public class CommandConverter {
 	public CommandEntity toEntity(MiniAppCommandBoundary boundary) {
 		CommandEntity entity = new CommandEntity();
 		entity.setCommandId(
-				boundary.getCommandId().getSuperApp()
+				boundary.getCommandId().getSuperapp()
 				+ "#"
-				+ boundary.getCommandId().getMiniApp()
+				+ boundary.getCommandId().getMiniapp()
 				+ "#"
 				+ boundary.getCommandId().getId() );
 		
-		entity.setMiniAppName(boundary.getCommandId().getMiniApp());
-		entity.setInvocationTimesTamp(boundary.getInvocationTimesTamp());
+		entity.setMiniAppName(boundary.getCommandId().getMiniapp());
+		entity.setInvocationTimestamp(boundary.getInvocationTimestamp());
 		entity.setCommand(boundary.getCommand());
 		entity.setInvokedBy(
-				boundary.getInvokedBy().getUserId().getSuperApp()
+				boundary.getInvokedBy().getUserId().getSuperapp()
 				+ "#"
 				+ boundary.getInvokedBy().getUserId().getEmail());
 		if (boundary.getCommandAttribute() != null)
@@ -36,7 +36,7 @@ public class CommandConverter {
 		else 
 			entity.setCommandAttributes(new HashMap<>());
 		entity.setTargetObject(
-				boundary.getTargetObject().getObjectId().getSuperApp()
+				boundary.getTargetObject().getObjectId().getSuperapp()
 				+ "#"
 				+ boundary.getTargetObject().getObjectId().getId() );
 		return entity;
@@ -51,7 +51,7 @@ public class CommandConverter {
 				, commandId[2]));
 		boundary.setCommand(entity.getCommand());
 		boundary.setCommandAttribute(entity.getCommandAttributes());
-		boundary.setInvocationTimesTamp(entity.getInvocationTimesTamp());
+		boundary.setInvocationTimestamp(entity.getInvocationTimestamp());
 		String[] invokedBy = entity.getInvokedBy().split("#");
 		boundary.setInvokedBy(
 				new InvokedBy(

@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import demo.boundaries.MiniAppCommandBoundary;
-import demo.services.CommandService;
+import demo.boundaries.ObjectBoundary;
+import demo.services.interfaces.CommandService;
 
 @RestController
 @RequestMapping(path ={"/superapp/miniapp"})
@@ -26,11 +27,9 @@ public class CommandController {
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE
 			)
-	public MiniAppCommandBoundary[] createObject(
+	public Object[] invokeCommand (
 			@PathVariable("miniAppName") String miniAppName,
-			@RequestBody MiniAppCommandBoundary boundary) {
-		MiniAppCommandBoundary[] jsonArr = new MiniAppCommandBoundary[] { commandService.invokeACommand(miniAppName, boundary) };
-		
-		return jsonArr;
+			@RequestBody MiniAppCommandBoundary boundary) {		
+		return commandService.invokeACommand(miniAppName, boundary).toArray(new Object[0]);
 	}
 }

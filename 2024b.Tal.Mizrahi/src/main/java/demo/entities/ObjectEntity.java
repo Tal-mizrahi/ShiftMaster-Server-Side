@@ -13,7 +13,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name = "OBJECT_TABLE")
+@Table(name = "OBJECTS_TABLE")
 public class ObjectEntity {
 	
 		@Id
@@ -23,11 +23,30 @@ public class ObjectEntity {
 	    private boolean active;
 	    
 	    @Temporal(TemporalType.TIMESTAMP)
-	    private Date creationTimesTamp;
+	    private Date creationTimestamp;
 	    
 	    private String createdBy;
 	    
-	    private String location;
+//	    private String location;
+	    
+	    private double lng;
+	    private double lat;
+	    public double getLat() {
+			return lat;
+		}
+
+		public void setLat(double lat) {
+			this.lat = lat;
+		}
+
+		public double getLng() {
+			return lng;
+		}
+
+		public void setLng(double lng) {
+			this.lng = lng;
+		}
+
 	    
 		@Lob
 		@Convert(converter = ApplicationMapToStringConverter.class)
@@ -60,14 +79,14 @@ public class ObjectEntity {
 			this.alias = alias;
 		}
 		
-
-		public String getLocation() {
-			return location;
-		}
-
-		public void setLocation(String location) {
-			this.location = location;
-		}
+//
+//		public String getLocation() {
+//			return location;
+//		}
+//
+//		public void setLocation(String location) {
+//			this.location = location;
+//		}
 
 		public boolean getActive() {
 			return active;
@@ -77,12 +96,12 @@ public class ObjectEntity {
 			this.active = active;
 		}
 
-		public Date getCreationTimesTamp() {
-			return creationTimesTamp;
+		public Date getCreationTimestamp() {
+			return creationTimestamp;
 		}
 
-		public void setCreationTimesTamp(Date creationTimeStamp) {
-			this.creationTimesTamp = creationTimeStamp;
+		public void setCreationTimestamp(Date creationTimestamp) {
+			this.creationTimestamp = creationTimestamp;
 		}
 
 
@@ -107,9 +126,11 @@ public class ObjectEntity {
 			return "ObjectEntity [objectId=" + objectId 
 					+ ", type=" + type 
 					+ ", alias=" + alias 
-					+ ", location" + location
+					//+ ", location" + location
+					+", lat= " + lat
+					+", lng= " + lng					
 					+ ", active=" + active
-					+ ", creationTimeStamp=" + creationTimesTamp 
+					+ ", creationTimestamp=" + creationTimestamp 
 					+ ", createdBy=" + createdBy 
 					+ ", objectDetails=" + objectDetails + "]";
 		}

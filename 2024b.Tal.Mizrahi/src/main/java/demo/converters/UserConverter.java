@@ -27,7 +27,7 @@ public class UserConverter { // from NewUserBoundry to UserEntity
 
 		UserId id = new UserId();
 		String[] userId = entity.getUserId().split("#");
-		id.setSuperApp(userId[0]);
+		id.setSuperapp(userId[0]);
 		id.setEmail(userId[1]);
 		boundary.setUserId(id);
 		boundary.setRole(entity.getRole());

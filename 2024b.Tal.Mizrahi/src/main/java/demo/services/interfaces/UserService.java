@@ -1,4 +1,4 @@
-package demo.services;
+package demo.services.interfaces;
 
 import java.util.Optional;
 

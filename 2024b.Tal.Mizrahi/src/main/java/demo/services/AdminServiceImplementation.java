@@ -16,9 +16,13 @@ import demo.crud.ObjectCrud;
 import demo.crud.UserCrud;
 import demo.entities.UserEntity;
 import demo.objects.RolesEnum;
+import demo.services.exceptions.BadRequestException;
+import demo.services.exceptions.ForbiddenException;
+import demo.services.exceptions.NotFoundException;
+import demo.services.interfaces.EnhancedAdminService;
 
 @Service
-public class AdminServiceImplementation implements AdminService {
+public class AdminServiceImplementation implements EnhancedAdminService {
 
 	private UserCrud userCrud;
 	private UserConverter userConverter;
@@ -43,6 +47,67 @@ public class AdminServiceImplementation implements AdminService {
 		this.objectCrud = objectCrud;
 		this.commandCrud = commandCrud;
 		this.commandConverter = commandConverter;
+	}
+	
+	@Override
+	@Deprecated
+	public void deleteAllUsers() {
+		throw new BadRequestException("This operation is deprecated");
+//		this.userCrud.deleteAll();
+//		System.err.println("All user entries Deleted");
+		
+	}
+
+	@Override
+	@Deprecated
+	public void deleteAllObjects() {
+		throw new BadRequestException("This operation is deprecated");
+//		this.objectCrud.deleteAll();
+//		System.err.println("All object entries Deleted");
+//		
+	}
+
+	@Override
+	@Deprecated
+	public void deleteAllCommandsHistory() {
+		throw new BadRequestException("This operation is deprecated");
+//		this.commandCrud.deleteAll();
+//		System.err.println("All commands entries Deleted");
+		
+	}
+
+	@Override
+	@Deprecated
+	public List<UserBoundary> getAllUsers() {
+		throw new BadRequestException("This operation is deprecated");
+//		return this.userCrud.findAll() // List<UserEntity>
+//				.stream() // Stream<DemoEntity>
+//				.peek(entity -> System.err.println("* " + entity)) // Prints all items.
+//				.map(userConverter::toBoundary) // Stream<userBoundary>
+//				.toList(); // List<UserBoundary>
+	}
+
+	@Override
+	@Deprecated
+	public List<MiniAppCommandBoundary> getAllCommands() {
+		throw new BadRequestException("This operation is deprecated");
+//		return this.commandCrud.findAll() // List<UserEntity>
+//				.stream() // Stream<DemoEntity>
+//				.peek(entity -> System.err.println("* " + entity)) // Prints all items.
+//				.map(this.commandConverter::toBoundary) // Stream<CommandBoundary>
+//				.toList(); // List<CommandBoundary>
+	}
+
+	@Override
+	@Deprecated
+	public List<MiniAppCommandBoundary> getCommandsOfSpecificMiniApp(String miniAppName) {
+		throw new BadRequestException("This operation is deprecated");
+//		return commandCrud
+//				.findAllByMiniAppName(miniAppName)
+//				.stream()
+//				.map(commandConverter::toBoundary)
+//				.peek(System.err :: println)
+//				.toList();
 	}
 
 	@Override
@@ -88,7 +153,7 @@ public class AdminServiceImplementation implements AdminService {
 	@Transactional(readOnly = true)
 	public List<MiniAppCommandBoundary> getAllCommands(String userSuperapp, String email, int size, int page) {
 		checkAdminPermission(userSuperapp, email);
-		return this.commandCrud.findAll(PageRequest.of(page, size, Direction.DESC, "commandId", "invocationTimesTamp")) // List<UserEntity>
+		return this.commandCrud.findAll(PageRequest.of(page, size, Direction.DESC, "invocationTimestamp", "commandId")) // List<UserEntity>
 				.stream() // Stream<DemoEntity>
 				.peek(entity -> System.err.println("* " + entity)) // Prints all items.
 				.map(this.commandConverter::toBoundary) // Stream<CommandBoundary>
@@ -100,7 +165,7 @@ public class AdminServiceImplementation implements AdminService {
 	public List<MiniAppCommandBoundary> getCommandsOfSpecificMiniApp(String miniAppName, String userSuperapp, String email, int size, int page) {
 		checkAdminPermission(userSuperapp, email);
 		return commandCrud
-				.findAllByMiniAppName(miniAppName, PageRequest.of(page, size, Direction.ASC, "command"))
+				.findAllByMiniAppName(miniAppName, PageRequest.of(page, size, Direction.DESC, "invocationTimestamp", "commandId"))
 				.stream()
 				.map(commandConverter::toBoundary)
 				.peek(System.err :: println)
@@ -115,7 +180,10 @@ public class AdminServiceImplementation implements AdminService {
 						+ " and superapp " + userSuperapp + " Does not exist in database"));
 		if (!entity.getRole().equals(RolesEnum.ADMIN))
 			throw new ForbiddenException("UserEntity with email: " + email 
-						+ " and superapp " + userSuperapp + " not have the permission");
+						+ " and superapp " + userSuperapp + " dont have ADMIN permission");
 	}
+
+
+
 
 }

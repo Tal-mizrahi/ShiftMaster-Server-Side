@@ -12,6 +12,10 @@ import demo.converters.UserConverter;
 import demo.crud.UserCrud;
 import demo.entities.UserEntity;
 import demo.objects.InputValidation;
+import demo.services.exceptions.BadRequestException;
+import demo.services.exceptions.ConflictException;
+import demo.services.exceptions.NotFoundException;
+import demo.services.interfaces.UserService;
 
 @Service
 public class UserServiceImplementation implements UserService {
@@ -38,7 +42,7 @@ public class UserServiceImplementation implements UserService {
 		
 		// check if the email is not null and valid
 		if (!InputValidation.isValidEmail(boundary.getEmail())) { 
-			throw new BadInputException("You must enter valid email! ");
+			throw new BadRequestException("You must enter valid email! ");
 		}
 		
 		if (userCrud.existsById(boundary.getEmail()))
@@ -47,20 +51,20 @@ public class UserServiceImplementation implements UserService {
 		if(
 				boundary.getUsername() == null 
 				|| boundary.getUsername().isBlank()) {
-			throw new BadInputException("You must enter username!");
+			throw new BadRequestException("You must enter username!");
 		} 
 		
 		if(
 				boundary.getAvatar() == null 
 				|| boundary.getAvatar().isBlank()) {
-			throw new BadInputException("You must enter avatar!");
+			throw new BadRequestException("You must enter avatar!");
 		} 
 		
 		// check if the role is null and if the role is valid 
 		if (
 				boundary.getRole() == null 
 				|| !InputValidation.isValidRole(boundary.getRole().name())) {
-			throw new BadInputException("You must enter the userRole - ADMIN, SUPERAPP_USER, MINIAPP_USER");
+			throw new BadRequestException("You must enter the userRole - ADMIN, SUPERAPP_USER, MINIAPP_USER");
 		}
 		
 		UserEntity entity = userConverter.toEntity(boundary);

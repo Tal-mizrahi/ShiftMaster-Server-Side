@@ -13,7 +13,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name = "COMMAND_TABLE")
+@Table(name = "COMMANDS_TABLE")
 public class CommandEntity {
 	
 	@Id
@@ -23,7 +23,7 @@ public class CommandEntity {
 	private String command;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date invocationTimesTamp;
+	private Date invocationTimestamp;
 	
 	private String invokedBy;
 	
@@ -60,12 +60,12 @@ public class CommandEntity {
 		this.command = command;
 	}
 	
-	public Date getInvocationTimesTamp() {
-		return invocationTimesTamp;
+	public Date getInvocationTimestamp() {
+		return invocationTimestamp;
 	}
 	
-	public void setInvocationTimesTamp(Date invocationTimesTamp) {
-		this.invocationTimesTamp = invocationTimesTamp;
+	public void setInvocationTimestamp(Date invocationTimestamp) {
+		this.invocationTimestamp = invocationTimestamp;
 	}
 	
 	 
@@ -98,7 +98,7 @@ public class CommandEntity {
 		return "CommandEntity [commandId=" + commandId 
 				+ ", miniAppName=" + miniAppName 
 				+ ", command=" + command
-				+ ", invocationTimesTamp=" + invocationTimesTamp 
+				+ ", invocationTimestamp=" + invocationTimestamp 
 				+ ", invokedBy=" + invokedBy 
 				+ ", targetObject=" + targetObject
 				+ ", commandAttributes=" + commandAttributes + "]";

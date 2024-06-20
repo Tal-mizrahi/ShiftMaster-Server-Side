@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import demo.boundaries.MiniAppCommandBoundary;
 import demo.boundaries.UserBoundary;
-import demo.services.AdminService;
+import demo.services.interfaces.EnhancedAdminService;
 
 @RestController
 @RequestMapping(path ={"/superapp/admin"})
 public class AdminController {
 
-		private AdminService adminService;
+		private EnhancedAdminService adminService;
 
-		public AdminController(AdminService adminService) {
+		public AdminController(EnhancedAdminService adminService) {
 			this.adminService = adminService;
 		}
 		

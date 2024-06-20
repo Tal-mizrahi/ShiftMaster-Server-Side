@@ -1,24 +1,24 @@
-package demo.services;
+package demo.services.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-public class BadInputException extends RuntimeException {
+public class BadRequestException extends RuntimeException {
 	private static final long serialVersionUID = -724809990103580059L;
 
-	public BadInputException() {
+	public BadRequestException() {
 	}
 
-	public BadInputException(String message) {
+	public BadRequestException(String message) {
 		super(message);
 	}
 
-	public BadInputException(Throwable cause) {
+	public BadRequestException(Throwable cause) {
 		super(cause);
 	}
 
-	public BadInputException(String message, Throwable cause) {
+	public BadRequestException(String message, Throwable cause) {
 		super(message, cause);
 	}
 

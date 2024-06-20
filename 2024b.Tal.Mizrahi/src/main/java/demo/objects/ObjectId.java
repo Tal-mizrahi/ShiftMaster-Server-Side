@@ -2,25 +2,25 @@ package demo.objects;
 
 public class ObjectId {
 
-	private String superApp;
+	private String superapp;
 	private String id;
 
 	public ObjectId() {
 	}
 	
-	public ObjectId(String superApp, String id) {
-		this.superApp = superApp;
+	public ObjectId(String superapp, String id) {
+		this.superapp = superapp;
 		this.id = id;
 	} 
 	
 
-	public String getSuperApp() {
-		return superApp;
+	public String getSuperapp() {
+		return superapp;
 	}
 
 
-	public void setSuperApp(String superApp) {
-		this.superApp = superApp;
+	public void setSuperapp(String superapp) {
+		this.superapp = superapp;
 	}
 
 
@@ -36,7 +36,7 @@ public class ObjectId {
 
 	@Override
 	public String toString() {
-		return "ObjectId [superApp=" + superApp + ", id=" + id + "]";
+		return "ObjectId [superapp=" + superapp + ", id=" + id + "]";
 	}
 	
 	

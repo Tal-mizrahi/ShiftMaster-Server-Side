@@ -15,7 +15,7 @@ public class ObjectBoundary {
     
     private Location location;
     private Boolean active;
-    private Date creationTimesTamp;
+    private Date creationTimestamp;
     private CreatedBy createdBy;
     private Map<String, Object> objectDetails;
 	
@@ -53,12 +53,12 @@ public class ObjectBoundary {
 		this.active = active;
 	}
 
-	public Date getCreationTimesTamp() {
-		return creationTimesTamp;
+	public Date getCreationTimestamp() {
+		return creationTimestamp;
 	}
 
-	public void setCreationTimesTamp(Date creationTimeStamp) {
-		this.creationTimesTamp = creationTimeStamp;
+	public void setCreationTimestamp(Date creationTimestamp) {
+		this.creationTimestamp = creationTimestamp;
 	}
 
 	public CreatedBy getCreatedBy() {
@@ -92,7 +92,7 @@ public class ObjectBoundary {
 				+ ", alias=" + alias 
 				+ ", active=" + active
 				+ ", location= " + location
-				+ ", creationTimeStamp=" + creationTimesTamp 
+				+ ", creationTimestamp=" + creationTimestamp 
 				+ ", createdBy=" + createdBy 
 				+ ", objectDetails=" + objectDetails + "]";
 		

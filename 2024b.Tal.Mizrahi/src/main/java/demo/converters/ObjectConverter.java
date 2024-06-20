@@ -17,24 +17,26 @@ public class ObjectConverter {
 		ObjectEntity entity = new ObjectEntity();
 
 		entity.setObjectId(
-				boundary.getObjectId().getSuperApp() 
+				boundary.getObjectId().getSuperapp() 
 				+ "#" 
 				+ boundary.getObjectId().getId());
 
-		entity.setCreationTimesTamp(boundary.getCreationTimesTamp());
+		entity.setCreationTimestamp(boundary.getCreationTimestamp());
 		entity.setType(boundary.getType());
 		entity.setAlias(boundary.getAlias());
 		
-		String createdBy = boundary.getCreatedBy().getUserId().getSuperApp() 
+		String createdBy = boundary.getCreatedBy().getUserId().getSuperapp() 
 						   + "#"
 						   + boundary.getCreatedBy().getUserId().getEmail();
 		entity.setCreatedBy(createdBy);
 
 		if (boundary.getLocation() == null || boundary.getLocation().getLat() == null
 				|| boundary.getLocation().getLng() == null) {
-			entity.setLocation("0.0#0.0");
+			entity.setLat(0);
+			entity.setLng(0);
 		} else {
-			entity.setLocation(boundary.getLocation().getLat() + "#" + boundary.getLocation().getLng());
+			entity.setLat(boundary.getLocation().getLat());
+			entity.setLng(boundary.getLocation().getLng());
 		}
 
 		entity.setActive(boundary.getActive());
@@ -52,12 +54,13 @@ public class ObjectConverter {
 		boundary.setObjectId(new ObjectId(id[0], id[1]));
 		boundary.setType(entity.getType());
 		boundary.setAlias(entity.getAlias());
-		String[] location = entity.getLocation().split("#");
-		boundary.setLocation(new Location(Double.parseDouble(location[0]), Double.parseDouble(location[1])));
+	//	String[] location = entity.getLocation().split("#");
+	//	boundary.setLocation(new Location(Double.parseDouble(location[0]), Double.parseDouble(location[1])));
+		boundary.setLocation(new Location(entity.getLat(), entity.getLng()));
 		boundary.setActive(entity.getActive());
 		String[] createdBy = entity.getCreatedBy().split("#");
 		boundary.setCreatedBy(new CreatedBy(new UserId(createdBy[0], createdBy[1])));
-		boundary.setCreationTimesTamp(entity.getCreationTimesTamp());
+		boundary.setCreationTimestamp(entity.getCreationTimestamp());
 		boundary.setObjectDetails(entity.getObjectDetails());
 		return boundary;
 	}

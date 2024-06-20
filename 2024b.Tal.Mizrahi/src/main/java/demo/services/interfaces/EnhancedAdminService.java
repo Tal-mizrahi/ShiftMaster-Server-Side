@@ -1,13 +1,13 @@
-package demo.services;
+package demo.services.interfaces;
 
 import java.util.List;
 
 import demo.boundaries.MiniAppCommandBoundary;
 import demo.boundaries.UserBoundary;
 
-public interface AdminService {
+public interface EnhancedAdminService extends AdminService {
 
-	public void deleteAllUsers(String userSuperapp, String email);
+public void deleteAllUsers(String userSuperapp, String email);
 	
 	public void deleteAllObjects(String userSuperapp, String email);
 	
@@ -19,4 +19,3 @@ public interface AdminService {
 	
 	public List<MiniAppCommandBoundary> getCommandsOfSpecificMiniApp(String miniAppName, String userSuperapp, String email, int size, int page);
 }
- 

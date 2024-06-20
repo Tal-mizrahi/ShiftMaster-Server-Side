@@ -1,4 +1,4 @@
-package demo.services;
+package demo.services.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

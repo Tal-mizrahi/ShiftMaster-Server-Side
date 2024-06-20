@@ -2,36 +2,36 @@ package demo.objects;
 
 public class CommandId {
 		
-		private String superApp;
-		private String miniApp;
+		private String superapp;
+		private String miniapp;
 		private String id;
 		
 		public CommandId () {} 
 		
 		
 
-		public CommandId(String superAppName, String miniApp, String id) {
-			this.superApp = superAppName;
-			this.miniApp = miniApp;
+		public CommandId(String superapp, String miniapp, String id) {
+			this.superapp = superapp;
+			this.miniapp = miniapp;
 			this.id = id;
 		}
 
 
 
-		public String getSuperApp() {
-			return superApp;
+		public String getSuperapp() {
+			return superapp;
 		}  
 
-		public void setSuperApp(String superApp) {
-			this.superApp = superApp;
+		public void setSuperapp(String superapp) {
+			this.superapp = superapp;
 		} 
 
-		public String getMiniApp() {
-			return miniApp;
+		public String getMiniapp() {
+			return miniapp;
 		}
 
-		public void setMiniApp(String miniApp) {
-			this.miniApp = miniApp;
+		public void setMiniapp(String miniapp) {
+			this.miniapp = miniapp;
 		}
 
 		public String getId() {
@@ -44,8 +44,8 @@ public class CommandId {
 		
 		@Override
 		public String toString() {
-			return "CommandId [superAppName=" + superApp 
-					+ ", miniApp=" + miniApp 
+			return "CommandId [superapp=" + superapp 
+					+ ", miniapp=" + miniapp 
 					+ ", id=" + id + "]";
 		}
 

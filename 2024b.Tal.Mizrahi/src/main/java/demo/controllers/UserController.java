@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import demo.boundaries.NewUserBoundary;
 import demo.boundaries.UserBoundary;
-import demo.services.NotFoundException;
-import demo.services.UserService;
+import demo.services.exceptions.NotFoundException;
+import demo.services.interfaces.UserService;
 
 @RestController
 @RequestMapping(path = {"/superapp/users"})

@@ -2,23 +2,23 @@ package demo.objects;
 
 public class UserId {
 
-	private String superApp;
+	private String superapp;
 	private String email;
 
 	public UserId() {
 	}
 
-	public UserId(String superApp, String email) {
-		this.superApp = superApp;
+	public UserId(String superapp, String email) {
+		this.superapp = superapp;
 		this.email = email;
 	}
 
-	public String getSuperApp() {
-		return superApp;
+	public String getSuperapp() {
+		return superapp;
 	}
 
-	public void setSuperApp(String superApp) {
-		this.superApp = superApp;
+	public void setSuperapp(String superapp) {
+		this.superapp = superapp;
 	}
 
 	public String getEmail() {
@@ -31,7 +31,7 @@ public class UserId {
 
 	@Override
 	public String toString() {
-		return "UserId [superApp=" + superApp 
+		return "UserId [superapp=" + superapp 
 				+ ", email=" + email + "]";
 	}
 
