@@ -26,27 +26,9 @@ public class ObjectEntity {
 	    private Date creationTimestamp;
 	    
 	    private String createdBy;
-	    
-//	    private String location;
-	    
+	    	    
 	    private double lng;
 	    private double lat;
-	    public double getLat() {
-			return lat;
-		}
-
-		public void setLat(double lat) {
-			this.lat = lat;
-		}
-
-		public double getLng() {
-			return lng;
-		}
-
-		public void setLng(double lng) {
-			this.lng = lng;
-		}
-
 	    
 		@Lob
 		@Convert(converter = ApplicationMapToStringConverter.class)
@@ -79,14 +61,23 @@ public class ObjectEntity {
 			this.alias = alias;
 		}
 		
-//
-//		public String getLocation() {
-//			return location;
-//		}
-//
-//		public void setLocation(String location) {
-//			this.location = location;
-//		}
+
+	    public double getLat() {
+			return lat;
+		}
+
+		public void setLat(double lat) {
+			this.lat = lat;
+		}
+
+		public double getLng() {
+			return lng;
+		}
+
+		public void setLng(double lng) {
+			this.lng = lng;
+		}
+
 
 		public boolean getActive() {
 			return active;
@@ -126,7 +117,6 @@ public class ObjectEntity {
 			return "ObjectEntity [objectId=" + objectId 
 					+ ", type=" + type 
 					+ ", alias=" + alias 
-					//+ ", location" + location
 					+", lat= " + lat
 					+", lng= " + lng					
 					+ ", active=" + active
@@ -134,8 +124,6 @@ public class ObjectEntity {
 					+ ", createdBy=" + createdBy 
 					+ ", objectDetails=" + objectDetails + "]";
 		}
-
-
 
 
 }

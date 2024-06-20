@@ -38,7 +38,7 @@ public interface ObjectCrud extends JpaRepository<ObjectEntity, String> {
 			+                    "*COS(RADIANS(:lng - obj.lng))"
 			+                    "+SIN(RADIANS(:lat))"
 			+                   "*SIN(RADIANS(obj.lat)))))"
-			+ " < :radius")
+			+ " <= :radius")
 	public List<ObjectEntity> findAllByLocationRadius(@Param("lat") double lat, @Param("lng") double lng, @Param("radius") double radius, @Param("distanceUnits") double distanceUnits, Pageable pageable);
 	
 	@Query("SELECT obj FROM ObjectEntity obj "
@@ -49,7 +49,7 @@ public interface ObjectCrud extends JpaRepository<ObjectEntity, String> {
 			+                    "*COS(RADIANS(:lng - obj.lng))"
 			+                    "+SIN(RADIANS(:lat))"
 			+                   "*SIN(RADIANS(obj.lat))))"
-			+ " < :radius"
+			+ " <= :radius"
 			+ " and obj.active=true")
 	public List<ObjectEntity> findAllByLocationRadiusAndActiveTrue(@Param("lat") double lat, @Param("lng") double lng, @Param("radius") double radius, @Param("distanceUnits") double distanceUnits, Pageable pageable);
 }
