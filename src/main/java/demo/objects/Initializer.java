@@ -1,10 +1,7 @@
 package demo.objects;
 
-import java.util.stream.Stream;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.geo.Metrics;
 import org.springframework.stereotype.Component;
 
 import demo.boundaries.*;
@@ -43,23 +40,22 @@ public class Initializer implements CommandLineRunner {
 		createNewUserBoundary("John Doe", "JD", RolesEnum.ADMIN, "admin");
 		createNewUserBoundary("Jane Smith", "JS", RolesEnum.MINIAPP_USER, "miniapp");
 
-		Location location1 = new Location(32.115139, 34.817804);
+		Location herzeliyaBeachLoc = new Location(32.158687, 34.795102); 
+		Location eilatCenteralLoc = new Location(29.555803, 34.952435); 
 
 		System.err.println("Creating Objects:");
-		ObjectBoundary obj1 = storeObjectInDatabase("schedual", true, location1, "enter");
-		ObjectBoundary obj2 = storeObjectInDatabase("schedual", true, location1, "sched");
+		ObjectBoundary obj1 = storeObjectInDatabase("schedual", true, herzeliyaBeachLoc, "enter");
+		ObjectBoundary obj2 = storeObjectInDatabase("schedual", true, eilatCenteralLoc, "sched");
 		ObjectBoundary obj3 = storeObjectInDatabase("schedual", false, null, "enter");
-		ObjectBoundary obj4 = storeObjectInDatabase("schedual", false, null, "sched");
-		ObjectBoundary obj5 = storeObjectInDatabase("task", true, location1, "enter");
-		ObjectBoundary obj6 = storeObjectInDatabase("task", true, location1, "taskMen");
-		ObjectBoundary obj7 = storeObjectInDatabase("task", false, null, "enter");
-		ObjectBoundary obj8 = storeObjectInDatabase("task", false, null, "taskMen");
+		ObjectBoundary obj4 = storeObjectInDatabase("schedual", false, herzeliyaBeachLoc, "sched");
+		ObjectBoundary obj5 = storeObjectInDatabase("task", true, null, "enter");
+		ObjectBoundary obj6 = storeObjectInDatabase("task", true, null, "taskMen");
+		ObjectBoundary obj7 = storeObjectInDatabase("task", false, eilatCenteralLoc, "enter");
+		ObjectBoundary obj8 = storeObjectInDatabase("task", false, herzeliyaBeachLoc, "taskMen");
 
 		System.err.println("Creating commands:");
 		storeCommandInDatabase("dummyApp", "doSomething", obj5.getObjectId());
 		storeCommandInDatabase("dummyApp", "Hello", obj5.getObjectId());
-		System.err.println( "natural " + Metrics.NEUTRAL.getMultiplier());
-
 	}
 
 	private void createNewUserBoundary(String username, String avatar, RolesEnum role, String emailInitial) {

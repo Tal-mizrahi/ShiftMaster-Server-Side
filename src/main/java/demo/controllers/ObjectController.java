@@ -76,7 +76,7 @@ public class ObjectController {
 	}
 	
 	@GetMapping(
-			path = { "/search/byType/{type} " },
+			path = { "/search/byType/{type}" },
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ObjectBoundary[] getObjectsByType (
 			@PathVariable ("type") String type,
@@ -90,7 +90,7 @@ public class ObjectController {
 	}
 	
 	@GetMapping(
-			path = { "/search/byAlias/{alias} " },
+			path = { "/search/byAlias/{alias}" },
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ObjectBoundary[] getObjectsByAlias (
 			@PathVariable("alias") String alias,
@@ -104,7 +104,7 @@ public class ObjectController {
 	}
 
 	@GetMapping(
-			path = { "/search/byAliasPattern/{pattern} " },
+			path = { "/search/byAliasPattern/{pattern}" },
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ObjectBoundary[] getObjectsByAliasPattern (
 			@PathVariable("pattern") String pattern,
@@ -124,7 +124,7 @@ public class ObjectController {
 			@PathVariable("lat") double lat,
 			@PathVariable("lng") double lng,
 			@PathVariable("distance") double distance,
-			@RequestParam(name = "distanceUnits", required = true) String distanceUnits,
+			@RequestParam(name = "distanceUnits", required = false, defaultValue = "NEUTRAL") String distanceUnits,
 			@RequestParam(name = "userSuperapp", required = true) String userSuperapp,
 			@RequestParam(name = "userEmail", required = true) String email,
 			@RequestParam(name = "size", required = false, defaultValue = "10") int size,

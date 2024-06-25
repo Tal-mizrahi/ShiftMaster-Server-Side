@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import demo.boundaries.MiniAppCommandBoundary;
-import demo.boundaries.ObjectBoundary;
 import demo.services.interfaces.CommandService;
 
 @RestController

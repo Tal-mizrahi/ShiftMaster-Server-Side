@@ -4,14 +4,15 @@ import demo.objects.RolesEnum;
 import demo.objects.UserId;
 
 public class UserBoundary {
-	
+
 	private UserId userId;
 	private RolesEnum role;
 	private String username;
-	private String avatar;	
+	private String avatar;
 
-	public UserBoundary() {}
-	
+	public UserBoundary() {
+	}
+
 	public UserId getUserId() {
 		return userId;
 	}
@@ -27,7 +28,6 @@ public class UserBoundary {
 	public void setRole(RolesEnum role) {
 		this.role = role;
 	}
-
 
 	public String getUsername() {
 		return username;
@@ -47,15 +47,8 @@ public class UserBoundary {
 
 	@Override
 	public String toString() {
-		return "UserBoundary [userId=" + userId 
-				+ ", role=" + role 
-				+ ", username=" + username 
-				+ ", avatar=" + avatar
+		return "UserBoundary [userId=" + userId + ", role=" + role + ", username=" + username + ", avatar=" + avatar
 				+ "]";
 	}
-	
-	
-	
-	
-	
+
 }

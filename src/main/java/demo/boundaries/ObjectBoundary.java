@@ -24,6 +24,7 @@ public class ObjectBoundary {
 	public ObjectId getObjectId() {
 		return objectId;
 	}
+	
 
 	public void setObjectId(ObjectId objectId) {
 		this.objectId = objectId;

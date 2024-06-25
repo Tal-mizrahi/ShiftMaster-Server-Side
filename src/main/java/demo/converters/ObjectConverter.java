@@ -32,8 +32,8 @@ public class ObjectConverter {
 
 		if (boundary.getLocation() == null || boundary.getLocation().getLat() == null
 				|| boundary.getLocation().getLng() == null) {
-			entity.setLat(0);
-			entity.setLng(0);
+			entity.setLat(32.115139);
+			entity.setLng(34.817804);
 		} else {
 			entity.setLat(boundary.getLocation().getLat());
 			entity.setLng(boundary.getLocation().getLng());
@@ -54,8 +54,6 @@ public class ObjectConverter {
 		boundary.setObjectId(new ObjectId(id[0], id[1]));
 		boundary.setType(entity.getType());
 		boundary.setAlias(entity.getAlias());
-	//	String[] location = entity.getLocation().split("#");
-	//	boundary.setLocation(new Location(Double.parseDouble(location[0]), Double.parseDouble(location[1])));
 		boundary.setLocation(new Location(entity.getLat(), entity.getLng()));
 		boundary.setActive(entity.getActive());
 		String[] createdBy = entity.getCreatedBy().split("#");

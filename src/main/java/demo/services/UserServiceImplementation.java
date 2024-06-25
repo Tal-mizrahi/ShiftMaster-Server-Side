@@ -45,7 +45,7 @@ public class UserServiceImplementation implements UserService {
 			throw new BadRequestException("You must enter valid email! ");
 		}
 		
-		if (userCrud.existsById(boundary.getEmail()))
+		if (userCrud.existsById(springApplicationName + "#" + boundary.getEmail()))
 			throw new ConflictException("This user is already exists!");
 			
 		if(

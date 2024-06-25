@@ -3,14 +3,13 @@ package demo.boundaries;
 import demo.objects.RolesEnum;
 
 public class NewUserBoundary {
-	
+
 	private String email;
 	private RolesEnum role;
 	private String username;
 	private String avatar;
-	
-	public NewUserBoundary() {
 
+	public NewUserBoundary() {
 	}
 
 	public String getEmail() {
@@ -31,7 +30,7 @@ public class NewUserBoundary {
 
 	public String getUsername() {
 		return username;
-	} 
+	}
 
 	public void setUsername(String username) {
 		this.username = username;
@@ -44,17 +43,11 @@ public class NewUserBoundary {
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
-	
 
 	@Override
 	public String toString() {
-		return "NewUserBoundary [email=" + email +
-				", role=" + role + 
-				", username=" + username 
-				+ ", avatar=" + avatar
+		return "NewUserBoundary [email=" + email + ", role=" + role + ", username=" + username + ", avatar=" + avatar
 				+ "]";
 	}
-	
-	
-	
+
 }

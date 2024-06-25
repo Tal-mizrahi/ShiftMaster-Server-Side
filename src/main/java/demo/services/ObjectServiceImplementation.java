@@ -144,11 +144,11 @@ public class ObjectServiceImplementation implements EnhancedObjectService {
 	public void updateObject(String objectId, String superapp, ObjectBoundary boundary, String userSuperapp,
 			String email) {
 		String id = superapp + "#" + objectId;
+		if (getUserRole(new UserId(userSuperapp, email)) != RolesEnum.SUPERAPP_USER)
+			throw new ForbiddenException("Only user with SUPERAPP_USER role can update an object!");
+		
 		ObjectEntity entity = this.objectCrud.findById(id).orElseThrow(() -> new NotFoundException(
 				"ObjectEntity with id: " + objectId + " and superapp " + superapp + " Does not exist in database"));
-
-		if (getUserRole(boundary.getCreatedBy().getUserId()) != RolesEnum.SUPERAPP_USER)
-			throw new ForbiddenException("Only user with SUPERAPP_USER role can update an object!");
 
 		if (boundary.getType() != null && !boundary.getType().isBlank())
 			entity.setType(boundary.getType());
@@ -164,9 +164,6 @@ public class ObjectServiceImplementation implements EnhancedObjectService {
 
 		if (boundary.getLocation() != null && boundary.getLocation().getLat() != null
 				&& boundary.getLocation().getLng() != null) {
-
-			// String location = boundary.getLocation().getLat() + "#" +
-			// boundary.getLocation().getLng();
 			entity.setLat(boundary.getLocation().getLat());
 			entity.setLng(boundary.getLocation().getLng());
 		}
@@ -195,7 +192,8 @@ public class ObjectServiceImplementation implements EnhancedObjectService {
 	public List<ObjectBoundary> getAllObjects(String userSuperapp, String email, int size, int page) {
 		List<ObjectEntity> allEntities;
 		if (getUserRole(new UserId(userSuperapp, email)) == RolesEnum.SUPERAPP_USER)
-			allEntities = objectCrud.findAll(PageRequest.of(page, size, Direction.DESC, "creationTimestamp", "objectId")).toList();
+			allEntities = objectCrud
+					.findAll(PageRequest.of(page, size, Direction.DESC, "creationTimestamp", "objectId")).toList();
 		else
 			allEntities = objectCrud
 					.findAllByActiveTrue(PageRequest.of(page, size, Direction.DESC, "creationTimestamp", "objectId"));
@@ -216,10 +214,10 @@ public class ObjectServiceImplementation implements EnhancedObjectService {
 		List<ObjectEntity> allEntities;
 		if (getUserRole(new UserId(userSuperapp, email)) == RolesEnum.SUPERAPP_USER)
 			allEntities = objectCrud.findAllByType(type,
-					PageRequest.of(page, size, Direction.DESC, "creationTimesTamp", "objectId"));
+					PageRequest.of(page, size, Direction.DESC, "creationTimestamp", "objectId"));
 		else
 			allEntities = objectCrud.findAllByTypeAndActiveTrue(type,
-					PageRequest.of(page, size, Direction.DESC, "creationTimesTamp", "objectId"));
+					PageRequest.of(page, size, Direction.DESC, "creationTimestamp", "objectId"));
 
 		System.err.println(allEntities);
 		return allEntities // List<ObjectEntity>
@@ -238,10 +236,10 @@ public class ObjectServiceImplementation implements EnhancedObjectService {
 		List<ObjectEntity> allEntities;
 		if (getUserRole(new UserId(userSuperapp, email)) == RolesEnum.SUPERAPP_USER)
 			allEntities = objectCrud.findAllByAlias(alias,
-					PageRequest.of(page, size, Direction.DESC, "creationTimesTamp"));
+					PageRequest.of(page, size, Direction.DESC, "creationTimestamp", "objectId"));
 		else
 			allEntities = objectCrud.findAllByAliasAndActiveTrue(alias,
-					PageRequest.of(page, size, Direction.DESC, "creationTimesTamp"));
+					PageRequest.of(page, size, Direction.DESC, "creationTimestamp", "objectId"));
 		return allEntities // List<ObjectEntity>
 				.stream() // Stream<ObjectEntity>
 				.peek(entity -> System.err.println("* " + entity)) // Prints all items.
@@ -257,30 +255,31 @@ public class ObjectServiceImplementation implements EnhancedObjectService {
 		List<ObjectEntity> allEntities;
 		if (getUserRole(new UserId(userSuperapp, email)) == RolesEnum.SUPERAPP_USER)
 			allEntities = objectCrud.findAllByAliasLikeIgnoreCase(pattern,
-					PageRequest.of(page, size, Direction.DESC, "creationTimesTamp"));
+					PageRequest.of(page, size, Direction.DESC, "creationTimestamp", "objectId"));
 		else
 			allEntities = objectCrud.findAllByAliasLikeIgnoreCaseAndActiveTrue(pattern,
-					PageRequest.of(page, size, Direction.DESC, "creationTimesTamp"));
+					PageRequest.of(page, size, Direction.DESC, "creationTimestamp", "objectId"));
 		return allEntities // List<ObjectEntity>
 				.stream() // Stream<ObjectEntity>
 				.peek(entity -> System.err.println("* " + entity)) // Prints all items.
 				.map(this.objectConverter::toBoundary) // Stream<ObjectBoundary>
 				.toList(); // List<ObjectBoundary>
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true)
-	public List<ObjectBoundary> getAllObjectsByLocationRadius (double lat, double lng, double distance,String distanceUnits, String userSuperapp, String email, int size, int page){
+	public List<ObjectBoundary> getAllObjectsByLocationRadius(double lat, double lng, double distance,
+			String distanceUnits, String userSuperapp, String email, int size, int page) {
 		List<ObjectEntity> allEntities;
-		
+
 		double numericUnit = getNumericDistanceUnit(distanceUnits);
-			
+
 		if (getUserRole(new UserId(userSuperapp, email)) == RolesEnum.SUPERAPP_USER)
 			allEntities = objectCrud.findAllByLocationRadius(lat, lng, distance, numericUnit,
-					PageRequest.of(page, size, Direction.DESC, "creationTimesTamp"));
+					PageRequest.of(page, size, Direction.DESC, "creationTimestamp", "objectId"));
 		else
 			allEntities = objectCrud.findAllByLocationRadiusAndActiveTrue(lat, lng, distance, numericUnit,
-					PageRequest.of(page, size, Direction.DESC, "creationTimesTamp"));
+					PageRequest.of(page, size, Direction.DESC, "creationTimestamp", "objectId"));
 		return allEntities // List<ObjectEntity>
 				.stream() // Stream<ObjectEntity>
 				.peek(entity -> System.err.println("* " + entity)) // Prints all items.
@@ -296,10 +295,10 @@ public class ObjectServiceImplementation implements EnhancedObjectService {
 			throw new ForbiddenException("ADMIN users are not allowed!");
 		return entity.getRole();
 	}
-	
+
 	public double getNumericDistanceUnit(String distanceUnits) {
-		
-		if(distanceUnits == null)
+
+		if (distanceUnits == null)
 			return Metrics.NEUTRAL.getMultiplier();
 		Metrics unit = null;
 		for (Metrics metUnit : Metrics.values())

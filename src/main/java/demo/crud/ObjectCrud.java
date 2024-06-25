@@ -33,18 +33,18 @@ public interface ObjectCrud extends JpaRepository<ObjectEntity, String> {
 	@Query("SELECT obj FROM ObjectEntity obj "
 			+ "WHERE "
 			+ "(:distanceUnits"
-			+                    "*DEGREES(ACOS(COS(RADIANS(:lat))"
+			+                    "*ACOS(COS(RADIANS(:lat))"
 			+                    "*COS(RADIANS(obj.lat))"
 			+                    "*COS(RADIANS(:lng - obj.lng))"
 			+                    "+SIN(RADIANS(:lat))"
-			+                   "*SIN(RADIANS(obj.lat)))))"
+			+                   "*SIN(RADIANS(obj.lat))))"
 			+ " <= :radius")
 	public List<ObjectEntity> findAllByLocationRadius(@Param("lat") double lat, @Param("lng") double lng, @Param("radius") double radius, @Param("distanceUnits") double distanceUnits, Pageable pageable);
 	
 	@Query("SELECT obj FROM ObjectEntity obj "
 			+ "WHERE "
-			+ ":distanceUnits"
-			+                    "*DEGREES(ACOS(COS(RADIANS(:lat))"
+			+ "(:distanceUnits"
+			+                    "*ACOS(COS(RADIANS(:lat))"
 			+                    "*COS(RADIANS(obj.lat))"
 			+                    "*COS(RADIANS(:lng - obj.lng))"
 			+                    "+SIN(RADIANS(:lat))"
