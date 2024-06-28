@@ -8,6 +8,8 @@ public class InputValidation {
 	}
 
 	public static boolean isValidEmail(String email) {
+		if(email == null)
+			return false;
 		String emailReg = "^[a-zA-Z]+[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 		Pattern pattern = Pattern.compile(emailReg);
 		return pattern.matcher(email).matches(); // Return true if the email is valid, false if invalid

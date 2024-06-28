@@ -46,7 +46,8 @@ public class UserServiceImplementation implements UserService {
 		}
 		
 		if (userCrud.existsById(springApplicationName + "#" + boundary.getEmail()))
-			throw new ConflictException("This user is already exists!");
+			throw new ConflictException("UserEntity with email: " + boundary.getEmail() 
+					+ " and superapp " + springApplicationName + "This user is already exists!");
 			
 		if(
 				boundary.getUsername() == null 

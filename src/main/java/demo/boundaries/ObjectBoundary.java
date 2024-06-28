@@ -25,6 +25,17 @@ public class ObjectBoundary {
 		return objectId;
 	}
 	
+	
+
+	public ObjectBoundary (String type, String alias, Location location, Boolean active,
+			CreatedBy createdBy, Map<String, Object> objectDetails) {
+		this.type = type;
+		this.alias = alias;
+		this.location = location;
+		this.active = active;
+		this.createdBy = createdBy;
+		this.objectDetails = objectDetails;
+	}
 
 	public void setObjectId(ObjectId objectId) {
 		this.objectId = objectId;

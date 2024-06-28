@@ -39,6 +39,7 @@ public interface ObjectCrud extends JpaRepository<ObjectEntity, String> {
 			+                    "+SIN(RADIANS(:lat))"
 			+                   "*SIN(RADIANS(obj.lat))))"
 			+ " <= :radius")
+	 //@Query(value = "SELECT * FROM Location l WHERE ST_DWithin(l.coordinates, ST_MakePoint(:lng, :lat), :radius) = true", nativeQuery = true)
 	public List<ObjectEntity> findAllByLocationRadius(@Param("lat") double lat, @Param("lng") double lng, @Param("radius") double radius, @Param("distanceUnits") double distanceUnits, Pageable pageable);
 	
 	@Query("SELECT obj FROM ObjectEntity obj "

@@ -36,7 +36,7 @@ public class UserController {
 	
 	
 	@GetMapping(
-			path = { "login/{superapp}/{email}" }, 
+			path = { "/login/{superapp}/{email}" }, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 		public UserBoundary loginUser(
 				@PathVariable("superapp") String superapp,
@@ -49,8 +49,7 @@ public class UserController {
 	
     @PutMapping(
             path={"/{superapp}/{userEmail}"},
-            consumes={MediaType.APPLICATION_JSON_VALUE},
-            produces={MediaType.APPLICATION_JSON_VALUE})
+            consumes={MediaType.APPLICATION_JSON_VALUE})
     public void updateDetails(
     			@PathVariable("superapp") String superapp,
     			@PathVariable("userEmail") String email,

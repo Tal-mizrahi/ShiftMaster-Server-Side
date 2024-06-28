@@ -11,6 +11,17 @@ public class NewUserBoundary {
 
 	public NewUserBoundary() {
 	}
+	
+	
+
+	public NewUserBoundary(String email, RolesEnum role, String username, String avatar) {
+		this.email = email;
+		this.role = role;
+		this.username = username;
+		this.avatar = avatar;
+	}
+
+
 
 	public String getEmail() {
 		return email;

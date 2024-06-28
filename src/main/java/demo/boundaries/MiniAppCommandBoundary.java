@@ -18,6 +18,18 @@ public class MiniAppCommandBoundary {
 
 	public MiniAppCommandBoundary() {
 	}
+	
+	
+
+	public MiniAppCommandBoundary(String command, TargetObject targetObject, InvokedBy invokedBy,
+			Map<String, Object> commandAttribute) {
+		this.command = command;
+		this.targetObject = targetObject;
+		this.invokedBy = invokedBy;
+		this.commandAttribute = commandAttribute;
+	}
+
+
 
 	public CommandId getCommandId() {
 		return commandId;
