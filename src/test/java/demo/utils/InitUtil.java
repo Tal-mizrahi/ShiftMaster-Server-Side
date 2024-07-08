@@ -5,6 +5,7 @@ import java.util.Map;
 import demo.boundaries.MiniAppCommandBoundary;
 import demo.boundaries.NewUserBoundary;
 import demo.boundaries.ObjectBoundary;
+import demo.boundaries.UserBoundary;
 import demo.objects.CreatedBy;
 import demo.objects.InvokedBy;
 import demo.objects.Location;
@@ -22,6 +23,30 @@ public class InitUtil {
 			String avatar) {
 		return new NewUserBoundary(email, role, username, avatar);
 	}
+	
+	public void updateUserEmail(UserBoundary boundary, String email) {
+		String superapp = boundary.getUserId().getSuperapp();
+		boundary.setUserId(new UserId(superapp, email));
+	}
+	
+	
+	public void updateUserSuperapp(UserBoundary boundary, String superapp) {
+		String email = boundary.getUserId().getEmail();
+		boundary.setUserId(new UserId(superapp, email));
+	}
+	
+	public void updateUserRole(UserBoundary boundary, RolesEnum role) {
+		boundary.setRole(role);
+	}
+	
+	public void updateUserUsername(UserBoundary boundary, String username){
+		boundary.setUsername(username);
+	}
+	
+	public void updateUserAvatar(UserBoundary boundary, String avatar) {
+		boundary.setAvatar(avatar);
+	}
+	
 	
 	public ObjectBoundary createNewObject(
 			String type,

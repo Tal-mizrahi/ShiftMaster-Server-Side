@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.geo.Circle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -30,27 +29,18 @@ public interface ObjectCrud extends JpaRepository<ObjectEntity, String> {
 		
 	public List<ObjectEntity> findAllByAliasLikeIgnoreCaseAndActiveTrue(@Param("pattern") String pattern, Pageable pageable);
 	
-	@Query("SELECT obj FROM ObjectEntity obj "
-			+ "WHERE "
-			+ "(:distanceUnits"
-			+                    "*ACOS(COS(RADIANS(:lat))"
-			+                    "*COS(RADIANS(obj.lat))"
-			+                    "*COS(RADIANS(:lng - obj.lng))"
-			+                    "+SIN(RADIANS(:lat))"
-			+                   "*SIN(RADIANS(obj.lat))))"
-			+ " <= :radius")
-	 //@Query(value = "SELECT * FROM Location l WHERE ST_DWithin(l.coordinates, ST_MakePoint(:lng, :lat), :radius) = true", nativeQuery = true)
-	public List<ObjectEntity> findAllByLocationRadius(@Param("lat") double lat, @Param("lng") double lng, @Param("radius") double radius, @Param("distanceUnits") double distanceUnits, Pageable pageable);
+	@Query(value = "SELECT * FROM objects_table obj " 
+           + "WHERE ST_DWithin(ST_MakePoint(obj.lng, obj.lat)::geography, ST_MakePoint(:lng, :lat)::geography, :radius) "
+			, nativeQuery = true)
+	public List<ObjectEntity> findAllByLocationRadius(@Param("lat") double lat, @Param("lng") double lng, @Param("radius") double radius, Pageable pageable);
 	
-	@Query("SELECT obj FROM ObjectEntity obj "
-			+ "WHERE "
-			+ "(:distanceUnits"
-			+                    "*ACOS(COS(RADIANS(:lat))"
-			+                    "*COS(RADIANS(obj.lat))"
-			+                    "*COS(RADIANS(:lng - obj.lng))"
-			+                    "+SIN(RADIANS(:lat))"
-			+                   "*SIN(RADIANS(obj.lat))))"
-			+ " <= :radius"
-			+ " and obj.active=true")
-	public List<ObjectEntity> findAllByLocationRadiusAndActiveTrue(@Param("lat") double lat, @Param("lng") double lng, @Param("radius") double radius, @Param("distanceUnits") double distanceUnits, Pageable pageable);
+	@Query(value = "SELECT * FROM objects_table obj " 
+			+ "WHERE ST_DWithin(ST_MakePoint(obj.lng, obj.lat)::geography, ST_MakePoint(:lng, :lat)::geography, :radius) "
+			+ "AND obj.active=true"
+			, nativeQuery = true)
+	public List<ObjectEntity> findAllByLocationRadiusAndActiveTrue(@Param("lat") double lat, @Param("lng") double lng, @Param("radius") double radius, Pageable pageable);
+
+	public List<ObjectEntity> findAllByCreatedByAndTypeAndAlias(@Param("createdBy") String createdBy, @Param("type") String type,@Param("alias") String alias, Pageable pageable);
+
+
 }

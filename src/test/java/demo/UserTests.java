@@ -474,7 +474,43 @@ public class UserTests {
 
 	}
 	
-
+	//email, role, username, avatar)
+		@Test
+		public void testSuccessfulUpdatedUserRoleUsernameAvatarInDB() throws Exception{
+			NewUserBoundary createdNewUser = userUtil
+					.createNewUser(
+							"adminUser@gmail.com",
+							RolesEnum.ADMIN,
+							"talmiz",
+							"t");
+							
+			UserBoundary createdUser = this.restClient
+				.post()
+				.uri("/users")	
+				.body(createdNewUser)
+				.retrieve()
+				.body(UserBoundary.class);
+			
+			// changing the role, username and the avatar of the created user
+			userUtil.updateUserAvatar(createdUser, "dummy");
+			userUtil.updateUserUsername(createdUser, "dummyUser");
+			userUtil.updateUserRole(createdUser, RolesEnum.MINIAPP_USER);
+			
+			this.restClient
+			.put()
+			.uri("/users/{superapp}/{email}", createdUser.getUserId().getSuperapp(), createdUser.getUserId().getEmail())
+			.body(createdUser)
+			.retrieve();
+			
+			assertThat(this.restClient
+					.get()
+					.uri("/users/login/{superapp}/{email}", createdUser.getUserId().getSuperapp(), createdUser.getUserId().getEmail())
+					.retrieve()
+					.body(UserBoundary.class))
+			.usingRecursiveComparison()
+			.isEqualTo(createdUser);
+		}
+		
 	
 
 }

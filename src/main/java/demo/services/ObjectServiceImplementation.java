@@ -275,10 +275,10 @@ public class ObjectServiceImplementation implements EnhancedObjectService {
 		double numericUnit = getNumericDistanceUnit(distanceUnits);
 
 		if (getUserRole(new UserId(userSuperapp, email)) == RolesEnum.SUPERAPP_USER)
-			allEntities = objectCrud.findAllByLocationRadius(lat, lng, distance, numericUnit,
-					PageRequest.of(page, size, Direction.DESC, "creationTimestamp", "objectId"));
-		else
-			allEntities = objectCrud.findAllByLocationRadiusAndActiveTrue(lat, lng, distance, numericUnit,
+			allEntities = objectCrud.findAllByLocationRadius(lat, lng, distance*numericUnit,
+					PageRequest.of(page, size, Direction.DESC, "creation_timestamp", "object_id"));
+			else
+			allEntities = objectCrud.findAllByLocationRadiusAndActiveTrue(lat, lng, distance*numericUnit,
 					PageRequest.of(page, size, Direction.DESC, "creationTimestamp", "objectId"));
 		return allEntities // List<ObjectEntity>
 				.stream() // Stream<ObjectEntity>
@@ -298,15 +298,14 @@ public class ObjectServiceImplementation implements EnhancedObjectService {
 
 	public double getNumericDistanceUnit(String distanceUnits) {
 
-		if (distanceUnits == null)
-			return Metrics.NEUTRAL.getMultiplier();
-		Metrics unit = null;
-		for (Metrics metUnit : Metrics.values())
-			if (metUnit.name().equalsIgnoreCase(distanceUnits))
-				unit = metUnit;
-		if (unit == null)
+		if (distanceUnits == null || distanceUnits.equalsIgnoreCase("NEUTRAL"))
+			return 1;
+		else if (distanceUnits.equalsIgnoreCase("KILOMETERS"))
+			return 1000;
+		else if (distanceUnits.equalsIgnoreCase("MILES"))
+			return 1609.344;
+		else
 			throw new BadRequestException("Distance unit " + distanceUnits + " is invalid!\n");
-		return unit.getMultiplier();
 	}
 
 }

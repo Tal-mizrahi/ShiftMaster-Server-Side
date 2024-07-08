@@ -6,6 +6,7 @@ import java.util.Map;
 import demo.converters.ApplicationMapToStringConverter;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -31,6 +32,7 @@ public class ObjectEntity {
 	    private double lat;
 	    
 		@Lob
+	   // @Column(name = "object_details" , columnDefinition = "object_details")
 		@Convert(converter = ApplicationMapToStringConverter.class)
 	    private Map<String, Object> objectDetails;
 	    
