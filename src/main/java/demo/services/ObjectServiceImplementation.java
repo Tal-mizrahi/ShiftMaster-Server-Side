@@ -279,7 +279,7 @@ public class ObjectServiceImplementation implements EnhancedObjectService {
 					PageRequest.of(page, size, Direction.DESC, "creation_timestamp", "object_id"));
 			else
 			allEntities = objectCrud.findAllByLocationRadiusAndActiveTrue(lat, lng, distance*numericUnit,
-					PageRequest.of(page, size, Direction.DESC, "creationTimestamp", "objectId"));
+					PageRequest.of(page, size, Direction.DESC, "creation_timestamp", "object_id"));
 		return allEntities // List<ObjectEntity>
 				.stream() // Stream<ObjectEntity>
 				.peek(entity -> System.err.println("* " + entity)) // Prints all items.
