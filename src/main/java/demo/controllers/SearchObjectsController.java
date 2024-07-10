@@ -1,6 +1,7 @@
 package demo.controllers;
 
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import demo.services.interfaces.EnhancedObjectService;
 
 @RestController
 @RequestMapping(path ={"/superapp/objects/search"})
+@CrossOrigin
 public class SearchObjectsController {
 
 	private EnhancedObjectService objectService;
