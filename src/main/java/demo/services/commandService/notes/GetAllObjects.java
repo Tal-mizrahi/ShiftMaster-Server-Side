@@ -22,13 +22,11 @@ import demo.services.interfaces.EnhancedObjectService;
 @Component("getAllObjectsOfSpecificWorker")
 public class GetAllObjects implements CommandAbstraction {
 	
-	private EnhancedObjectService objectService;
 	private ObjectCrud objectCrud;
 	private ObjectConverter objectConverter;
 	private final Log logger = LogFactory.getLog(GetAllObjects.class);
 
 	public GetAllObjects(EnhancedObjectService objectService, ObjectCrud objectCrud, ObjectConverter objectConverter) {
-		this.objectService = objectService;
 		this.objectConverter = objectConverter;
 		this.objectCrud = objectCrud;
 	}

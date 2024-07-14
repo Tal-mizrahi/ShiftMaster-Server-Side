@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.3.0'
+	id 'org.springframework.boot' version '3.3.1'
 	id 'io.spring.dependency-management' version '1.1.5'
 }
 
@@ -8,7 +8,9 @@ group = 'com.example'
 version = '1.0'
 
 java {
-	sourceCompatibility = '21' 
+	toolchain{
+		languageVersion = JavaLanguageVersion.of(21) 
+	}
 }
 
 repositories {
@@ -16,24 +18,29 @@ repositories {
 }
 
 dependencies {
+
+	implementation 'org.hibernate.orm:hibernate-core:6.5.2.Final'
+    implementation 'org.hibernate:hibernate-spatial:6.5.2.Final'
 	
 	implementation 'org.springframework.boot:spring-boot-starter-web' // TomCat, RESTapi controllers
 	
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' //Java Persistance Architecture
 	
 	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
-	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0' // Swagger
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0' // Swagger
 	
 	//Runtime database
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'org.postgresql:postgresql' // note postgresql support
-
+	implementation 'net.postgis:postgis-jdbc:2.5.0'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools' // Dev Utilities, rebuild and restart
 	developmentOnly 'org.springframework.boot:spring-boot-docker-compose' // note docker compose support
 	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test' // for tests, JUnit, assertJ, SpringBootTest
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher' // note test plan management support
 }
+
+
 
 tasks.named('test') {
 	useJUnitPlatform()
