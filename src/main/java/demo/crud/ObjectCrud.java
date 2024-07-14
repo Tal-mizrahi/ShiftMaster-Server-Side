@@ -40,7 +40,10 @@ public interface ObjectCrud extends JpaRepository<ObjectEntity, String> {
 			, nativeQuery = true)
 	public List<ObjectEntity> findAllByLocationRadiusAndActiveTrue(@Param("lat") double lat, @Param("lng") double lng, @Param("radius") double radius, Pageable pageable);
 
-	public List<ObjectEntity> findAllByCreatedByAndTypeAndAlias(@Param("createdBy") String createdBy, @Param("type") String type,@Param("alias") String alias, Pageable pageable);
+	//for commands
+	
+	public List<ObjectEntity> findAllByCreatedByAndTypeAndAliasAndActiveTrue(@Param("createdBy") String createdBy, @Param("type") String type,@Param("alias") String alias);
+	public List<ObjectEntity> findAllByTypeAndAliasAndActiveTrue(@Param("type") String type,@Param("alias") String alias);
 
 
 }
