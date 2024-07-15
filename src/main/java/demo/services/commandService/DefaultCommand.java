@@ -1,4 +1,4 @@
-package demo.services.commandService.notes;
+package demo.services.commandService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import demo.boundaries.MiniAppCommandBoundary;
-import demo.services.commandService.CommandAbstraction;
 
 @Component
 public class DefaultCommand implements CommandAbstraction {

@@ -24,7 +24,7 @@ import demo.objects.InputValidation;
 import demo.objects.RolesEnum;
 import demo.objects.UserId;
 import demo.services.commandService.CommandAbstraction;
-import demo.services.commandService.notes.DefaultCommand;
+import demo.services.commandService.DefaultCommand;
 import demo.services.exceptions.BadRequestException;
 import demo.services.exceptions.ForbiddenException;
 import demo.services.exceptions.NotFoundException;

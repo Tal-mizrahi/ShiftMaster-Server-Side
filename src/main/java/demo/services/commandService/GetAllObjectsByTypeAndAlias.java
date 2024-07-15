@@ -1,4 +1,4 @@
-package demo.services.commandService.notes;
+package demo.services.commandService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import demo.boundaries.MiniAppCommandBoundary;
 import demo.converters.ObjectConverter;
 import demo.crud.ObjectCrud;
-import demo.services.commandService.CommandAbstraction;
 import demo.services.interfaces.EnhancedObjectService;
 
 @Component("getAllObjectsByTypeAndAlias")
@@ -18,7 +17,7 @@ public class GetAllObjectsByTypeAndAlias implements CommandAbstraction {
 
 	private ObjectCrud objectCrud;
 	private ObjectConverter objectConverter;
-	private final Log logger = LogFactory.getLog(GetAllObjects.class);
+	private final Log logger = LogFactory.getLog(GetAllObjectsByUserTypeAnsAlias.class);
 
 	public GetAllObjectsByTypeAndAlias(EnhancedObjectService objectService, ObjectCrud objectCrud,
 			ObjectConverter objectConverter) {

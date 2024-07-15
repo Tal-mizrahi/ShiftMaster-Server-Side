@@ -1,4 +1,4 @@
-package demo.services.commandService.notes;
+package demo.services.commandService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,18 +15,17 @@ import demo.converters.ObjectConverter;
 import demo.crud.ObjectCrud;
 import demo.entities.ObjectEntity;
 import demo.objects.UserId;
-import demo.services.commandService.CommandAbstraction;
 import demo.services.exceptions.BadRequestException;
 import demo.services.interfaces.EnhancedObjectService;
 
 @Component("getAllObjectsOfSpecificWorker")
-public class GetAllObjects implements CommandAbstraction {
+public class GetAllObjectsByUserTypeAnsAlias implements CommandAbstraction {
 	
 	private ObjectCrud objectCrud;
 	private ObjectConverter objectConverter;
-	private final Log logger = LogFactory.getLog(GetAllObjects.class);
+	private final Log logger = LogFactory.getLog(GetAllObjectsByUserTypeAnsAlias.class);
 
-	public GetAllObjects(EnhancedObjectService objectService, ObjectCrud objectCrud, ObjectConverter objectConverter) {
+	public GetAllObjectsByUserTypeAnsAlias(EnhancedObjectService objectService, ObjectCrud objectCrud, ObjectConverter objectConverter) {
 		this.objectConverter = objectConverter;
 		this.objectCrud = objectCrud;
 	}
