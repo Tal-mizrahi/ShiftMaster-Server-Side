@@ -14,7 +14,7 @@ public class MiniAppCommandBoundary {
 	private TargetObject targetObject;
 	private Date invocationTimestamp;
 	private InvokedBy invokedBy;
-	private Map<String, Object> commandAttribute;
+	private Map<String, Object> commandAttributes;
 
 	public MiniAppCommandBoundary() {
 	}
@@ -22,11 +22,11 @@ public class MiniAppCommandBoundary {
 	
 
 	public MiniAppCommandBoundary(String command, TargetObject targetObject, InvokedBy invokedBy,
-			Map<String, Object> commandAttribute) {
+			Map<String, Object> commandAttributes) {
 		this.command = command;
 		this.targetObject = targetObject;
 		this.invokedBy = invokedBy;
-		this.commandAttribute = commandAttribute;
+		this.commandAttributes = commandAttributes;
 	}
 
 
@@ -71,19 +71,19 @@ public class MiniAppCommandBoundary {
 		this.invokedBy = invokedBy;
 	}
 
-	public Map<String, Object> getCommandAttribute() {
-		return commandAttribute;
+	public Map<String, Object> getCommandAttributes() {
+		return commandAttributes;
 	}
 
-	public void setCommandAttribute(Map<String, Object> commandAttribute) {
-		this.commandAttribute = commandAttribute;
+	public void setCommandAttributes(Map<String, Object> commandAttributes) {
+		this.commandAttributes = commandAttributes;
 	}
 
 	@Override
 	public String toString() {
 		return "MiniAppCommandBoundary [commandId=" + commandId + ", command=" + command + ", targetObject="
 				+ targetObject + ", invocationTimestamp=" + invocationTimestamp + ", invokedBy=" + invokedBy
-				+ ", commandAttribute=" + commandAttribute + "]";
+				+ ", commandAttributes=" + commandAttributes + "]";
 	}
 
 }

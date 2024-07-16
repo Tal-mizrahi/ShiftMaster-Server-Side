@@ -31,8 +31,8 @@ public class CommandConverter {
 				boundary.getInvokedBy().getUserId().getSuperapp()
 				+ "#"
 				+ boundary.getInvokedBy().getUserId().getEmail());
-		if (boundary.getCommandAttribute() != null)
-			entity.setCommandAttributes(boundary.getCommandAttribute());
+		if (boundary.getCommandAttributes() != null)
+			entity.setCommandAttributes(boundary.getCommandAttributes());
 		else 
 			entity.setCommandAttributes(new HashMap<>());
 		entity.setTargetObject(
@@ -50,7 +50,7 @@ public class CommandConverter {
 				, commandId[1]
 				, commandId[2]));
 		boundary.setCommand(entity.getCommand());
-		boundary.setCommandAttribute(entity.getCommandAttributes());
+		boundary.setCommandAttributes(entity.getCommandAttributes());
 		boundary.setInvocationTimestamp(entity.getInvocationTimestamp());
 		String[] invokedBy = entity.getInvokedBy().split("#");
 		boundary.setInvokedBy(

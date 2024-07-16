@@ -30,10 +30,10 @@ public class GetAllObjectsByTypeAndAlias implements CommandAbstraction {
 		String type, alias;
 		List<Object> rv = new ArrayList<Object>();
 		try {
-			type = boundary.getCommandAttribute().get("type").toString();
-			alias = boundary.getCommandAttribute().get("alias").toString();
+			type = boundary.getCommandAttributes().get("type").toString();
+			alias = boundary.getCommandAttributes().get("alias").toString();
 		} catch (Exception exception) {
-			boundary.getCommandAttribute().put("notice", "please provide details.type and details.alias");
+			boundary.getCommandAttributes().put("notice", "please provide details.type and details.alias");
 			rv.add(boundary);
 			return rv;
 		}

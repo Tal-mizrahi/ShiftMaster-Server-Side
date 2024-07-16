@@ -13,9 +13,9 @@ public class DefaultCommand implements CommandAbstraction {
 
 	@Override
 	public List<Object> invokeCommand(MiniAppCommandBoundary boundary) {
-		if (boundary.getCommandAttribute() == null)
-			boundary.setCommandAttribute(new HashMap<>());
-		boundary.getCommandAttribute().put("result", "DefaultGame - Echoing input");
+		if (boundary.getCommandAttributes() == null)
+			boundary.setCommandAttributes(new HashMap<>());
+		boundary.getCommandAttributes().put("result", "DefaultGame - Echoing input");
 		
 		List<Object> rv = new ArrayList<>();
 		rv.add(boundary);
