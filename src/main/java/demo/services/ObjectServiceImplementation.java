@@ -253,12 +253,16 @@ public class ObjectServiceImplementation implements EnhancedObjectService {
 			int page) {
 
 		List<ObjectEntity> allEntities;
+		if(!pattern.startsWith("%") && !pattern.endsWith("%")) {
+			pattern = "%" + pattern + "%";
+		}
 		if (getUserRole(new UserId(userSuperapp, email)) == RolesEnum.SUPERAPP_USER)
 			allEntities = objectCrud.findAllByAliasLikeIgnoreCase(pattern,
 					PageRequest.of(page, size, Direction.DESC, "creationTimestamp", "objectId"));
 		else
 			allEntities = objectCrud.findAllByAliasLikeIgnoreCaseAndActiveTrue(pattern,
 					PageRequest.of(page, size, Direction.DESC, "creationTimestamp", "objectId"));
+		
 		return allEntities // List<ObjectEntity>
 				.stream() // Stream<ObjectEntity>
 				.peek(entity -> System.err.println("* " + entity)) // Prints all items.
