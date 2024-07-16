@@ -2,7 +2,7 @@ services:
   shiftmaster:
     build: .
     ports:
-      - "8084:80"
+      - "80:80"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/mydatabase
       SPRING_DATASOURCE_USERNAME: myuser

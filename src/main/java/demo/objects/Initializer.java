@@ -76,8 +76,6 @@ public class Initializer implements CommandLineRunner {
 		createShiftSchedule(tal.getUserId(), "Mon Jul 15 2024", allWorkers);
 		Location herzeliyaBeachLoc = new Location(32.158687, 34.795102); 
 		Location eilatCenteralLoc = new Location(29.555803, 34.952435); 
-
-		System.err.println("Creating Objects:");
 	}
 	
 	private UserBoundary workerRegister(String username, String email, String password) {
