@@ -156,6 +156,55 @@ public class CommandTests {
 
 					assertThat(res).usingRecursiveComparison().isEqualTo(m1);
 				}
+				
+				
+				// GET ALL TASK
+				@Test
+				public void TestgetTaskdByTypeAlias() {
+					UserBoundary superUser = createAndPostUser("az@gmail.com", RolesEnum.SUPERAPP_USER, "adir", "a");
+					ObjectBoundary ob = createAndPostObject("note", // Type
+							"ACTIVE", // Alias
+							new Location(32.158687, 34.795102), // Location
+							true, // Active
+							superUser.getUserId(), // Created by
+							new HashMap<>() // Additional properties
+					);
+					ObjectBoundary ob2 = createAndPostObject("note", // Type
+							"ACTIVE", // Alias
+							new Location(32.158687, 34.795102), // Location
+							true, // Active
+							superUser.getUserId(), // Created by
+							new HashMap<>() // Additional properties
+					);
+					ObjectBoundary ob3 = createAndPostObject("note", // Type
+							"ACTIVE", // Alias
+							new Location(32.158687, 34.795102), // Location
+							true, // Active
+							superUser.getUserId(), // Created by
+							new HashMap<>() // Additional properties
+					);
+					UserBoundary MiniAppUser = createAndPostUser("nb@gmail.com", RolesEnum.MINIAPP_USER, "noam", "n");
+					HashMap<String,Object> map1 = new HashMap<>();
+					map1.put("type", "task");
+					map1.put("alias", "ACTIVE");
+					MiniAppCommandBoundary m1 = createAndPostCommand
+							("getAllObjectsByTypeAndAlias"
+							,ob.getObjectId()
+							,MiniAppUser.getUserId()
+							,map1);
+					System.err.println(m1);
+					Object[] res =  this.restClient.post().uri("/miniapp/{miniAppName}", m1.getCommand())
+						.body(m1).retrieve().body(Object[].class);
+					
+					UserBoundary adminUser = createAndPostUser("ad@gmail.com", RolesEnum.ADMIN,"ad" , "a");
+					
+					MiniAppCommandBoundary[] mini = this.restClient.get()
+							.uri("/admin/miniapp?userSuperapp={superapp}&userEmail={adminEmail}&size=5&page=0",
+									adminUser.getUserId().getSuperapp(), adminUser.getUserId().getEmail())
+							.retrieve().body(MiniAppCommandBoundary[].class);
+
+					assertThat(res).usingRecursiveComparison().isEqualTo(m1);
+				}
 
 		/* ---------------------------------------------FUNCTIONS-------------------------------------------------*/
 		

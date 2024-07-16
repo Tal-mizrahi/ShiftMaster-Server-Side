@@ -17,7 +17,7 @@ public class GetAllObjectsByTypeAndAlias implements CommandAbstraction {
 
 	private ObjectCrud objectCrud;
 	private ObjectConverter objectConverter;
-	private final Log logger = LogFactory.getLog(GetAllObjectsByUserTypeAnsAlias.class);
+	private final Log logger = LogFactory.getLog(GetAllObjectsByCreatedByTypeAndAlias.class);
 
 	public GetAllObjectsByTypeAndAlias(EnhancedObjectService objectService, ObjectCrud objectCrud,
 			ObjectConverter objectConverter) {

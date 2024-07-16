@@ -50,8 +50,6 @@ public class Initializer implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		// Create admin user to delete all existing DB
-		
-		
 		createNewUserBoundary("super user", "su", RolesEnum.ADMIN, "suAdmin@gmail.com");
 		adminService.deleteAllCommandsHistory("2024b.Tal.Mizrahi", "suAdmin@gmail.com");
 		adminService.deleteAllObjects("2024b.Tal.Mizrahi", "suAdmin@gmail.com");
@@ -75,29 +73,11 @@ public class Initializer implements CommandLineRunner {
 		allWorkers.add(workerRegister("Sharon Handzel", "sharon@gmail.com", "sharon123"));
 		
 		
-//		createNewUserBoundary("Tal Miz", "TM", RolesEnum.SUPERAPP_USER, "superapp");
-//		createNewUserBoundary("John Doe", "JD", RolesEnum.ADMIN, "admin");
-//		createNewUserBoundary("Jane Smith", "JS", RolesEnum.MINIAPP_USER, "miniapp");
-		
 		createShiftSchedule(tal.getUserId(), "Mon Jul 15 2024", allWorkers);
 		Location herzeliyaBeachLoc = new Location(32.158687, 34.795102); 
 		Location eilatCenteralLoc = new Location(29.555803, 34.952435); 
 
 		System.err.println("Creating Objects:");
-//		ObjectBoundary obj1 = storeObjectInDatabase("schedual", true, herzeliyaBeachLoc, "enter");
-//		ObjectBoundary obj2 = storeObjectInDatabase("schedual", true, eilatCenteralLoc, "sched");
-//		ObjectBoundary obj3 = storeObjectInDatabase("schedual", false, null, "enter");
-//		ObjectBoundary obj4 = storeObjectInDatabase("schedual", false, herzeliyaBeachLoc, "sched");
-//		ObjectBoundary obj5 = storeObjectInDatabase("task", true, null, "enter");
-//		ObjectBoundary obj6 = storeObjectInDatabase("task", true, null, "taskMen");
-//		ObjectBoundary obj7 = storeObjectInDatabase("task", false, eilatCenteralLoc, "enter");
-//		ObjectBoundary obj8 = storeObjectInDatabase("task", false, herzeliyaBeachLoc, "taskMen");
-//
-//		System.err.println("Creating commands:");
-//		storeCommandInDatabase("dummyApp", "doSomething", obj5.getObjectId());
-//		storeCommandInDatabase("dummyApp", "Hello", obj5.getObjectId());
-		
-		//System.err.println(calculateNextMonday());
 	}
 	
 	private UserBoundary workerRegister(String username, String email, String password) {
@@ -106,7 +86,10 @@ public class Initializer implements CommandLineRunner {
 		Map<String, Object> availableShifts = new HashMap<>();
 		 String[][] shiftsArray = new String[7][3];
 	        for (String[] row : shiftsArray) {
-	            Arrays.fill(row, worker.getUsername());
+	        	if(username.equals("Adir Zadok")) {
+	        		Arrays.fill(row, null);
+	        	} else
+	        		Arrays.fill(row, worker.getUsername());
 	        }
 		availableShifts.put("availableShifts", shiftsArray);
 		ObjectBoundary shiftObject = storeObjectInDatabase("availableShifts", true, null,  calculateNextMonday(),worker.getUserId(), availableShifts);
@@ -126,7 +109,7 @@ public class Initializer implements CommandLineRunner {
 		Map<String, Object> userDetails = new HashMap<>();
 		userDetails.put("password", password);
 		userDetails.put("username", teamLeader.getUsername());		
-		ObjectBoundary userObject = storeObjectInDatabase("Worker", true, null, "default",teamLeader.getUserId(), userDetails);
+		ObjectBoundary userObject = storeObjectInDatabase("Team Leader", true, null, "default",teamLeader.getUserId(), userDetails);
 		userService.updateDetails(teamLeader.getUserId().getEmail(), teamLeader.getUserId().getSuperapp(), createUserBoundary(null, userObject.getObjectId().getSuperapp() + "#" + userObject.getObjectId().getId(), null));
 		return teamLeader;
 	}

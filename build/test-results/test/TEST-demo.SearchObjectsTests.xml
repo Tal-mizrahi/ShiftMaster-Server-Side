@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="demo.SearchObjectsTests" tests="26" skipped="0" failures="0" errors="0" timestamp="2024-07-16T21:15:06" hostname="LAPTOP-8J7N3E11" time="3.749">
+  <properties/>
+  <testcase name="testNegetiveSearchObjectsByAliasByMiniAppuserEndingWithR()" classname="demo.SearchObjectsTests" time="0.118"/>
+  <testcase name="testRetrieveObjectsByLocationByMiniappUser()" classname="demo.SearchObjectsTests" time="0.197"/>
+  <testcase name="testSearchObjectsByTypeWithSuperappUser()" classname="demo.SearchObjectsTests" time="0.102"/>
+  <testcase name="testSearchObjectsByAliasEndingWithR()" classname="demo.SearchObjectsTests" time="0.135"/>
+  <testcase name="testRetrieveActiveObjectsWithinMinimalNeutralDistanceByMiniappUser()" classname="demo.SearchObjectsTests" time="0.133"/>
+  <testcase name="testSearchObjectsByAliasWithSuperappUser()" classname="demo.SearchObjectsTests" time="0.122"/>
+  <testcase name="testSearchObjectsByAliasContainingEWithMiniappUser()" classname="demo.SearchObjectsTests" time="0.16"/>
+  <testcase name="testSearchObjectsByAliasWithMiniAppUser()" classname="demo.SearchObjectsTests" time="0.112"/>
+  <testcase name="testSearchObjectsByAliasPatternWithSuperappUser()" classname="demo.SearchObjectsTests" time="0.113"/>
+  <testcase name="testNegetiveSearchObjectsByAliasByAdmin()" classname="demo.SearchObjectsTests" time="0.097"/>
+  <testcase name="testSearchForNonExistingAliasReturnsEmptyArray()" classname="demo.SearchObjectsTests" time="0.059"/>
+  <testcase name="testSearchObjectsByAliasPatternWithMiniappUser()" classname="demo.SearchObjectsTests" time="0.122"/>
+  <testcase name="testRetrieveObjectsByLocationWithObjectInTheCentralLocation()" classname="demo.SearchObjectsTests" time="0.165"/>
+  <testcase name="testFailToSearchForObjectByAliasWithAdmin()" classname="demo.SearchObjectsTests" time="0.15"/>
+  <testcase name="testRetrieveObjectsWithin30Miles()" classname="demo.SearchObjectsTests" time="0.179"/>
+  <testcase name="testRetrieveObjectsByLocation()" classname="demo.SearchObjectsTests" time="0.206"/>
+  <testcase name="testRetrieveActiveObjectsWithin30MilesByMiniappUser()" classname="demo.SearchObjectsTests" time="0.185"/>
+  <testcase name="testSearchForbiddenForAdmin()" classname="demo.SearchObjectsTests" time="0.096"/>
+  <testcase name="testSearchObjectsByAliasContainingEWithSuperappUser()" classname="demo.SearchObjectsTests" time="0.161"/>
+  <testcase name="testSearchWithNonExistingType()" classname="demo.SearchObjectsTests" time="0.172"/>
+  <testcase name="testRetrieveObjectsWithinMinimalNeutralDistance()" classname="demo.SearchObjectsTests" time="0.158"/>
+  <testcase name="testSearchWithoutObjects()" classname="demo.SearchObjectsTests" time="0.076"/>
+  <testcase name="testSearchObjectsByAliasByMiniAppuserEndingWithR()" classname="demo.SearchObjectsTests" time="0.145"/>
+  <testcase name="testSearchWithManyObject()" classname="demo.SearchObjectsTests" time="0.181"/>
+  <testcase name="testSearchActiveObjectsByTypeWithMiniappUser()" classname="demo.SearchObjectsTests" time="0.163"/>
+  <testcase name="testNegativeRetrieveActiveObjectsWithinMinimalNeutralDistanceByAdmin()" classname="demo.SearchObjectsTests" time="0.128"/>
+  <system-out><![CDATA[2024-07-17T00:15:06.330+03:00  INFO 12080 --- [2024b.Tal.Mizrahi] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [demo.SearchObjectsTests]: SearchObjectsTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-07-17T00:15:06.331+03:00  INFO 12080 --- [2024b.Tal.Mizrahi] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration demo.Application for test class demo.SearchObjectsTests
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

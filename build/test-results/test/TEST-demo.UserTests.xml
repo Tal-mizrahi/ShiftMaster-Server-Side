@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="demo.UserTests" tests="15" skipped="0" failures="0" errors="0" timestamp="2024-07-16T21:15:10" hostname="LAPTOP-8J7N3E11" time="1.053">
+  <properties/>
+  <testcase name="testFailToCreateUserDueEmptyUsername()" classname="demo.UserTests" time="0.05"/>
+  <testcase name="testFailToCreateUserDueConflictEmail()" classname="demo.UserTests" time="0.056"/>
+  <testcase name="testFailToCreateUserDueEmptyEmail()" classname="demo.UserTests" time="0.05"/>
+  <testcase name="testGetNonExistingUser()" classname="demo.UserTests" time="0.067"/>
+  <testcase name="testFailToCreateUserDueNullEmail()" classname="demo.UserTests" time="0.05"/>
+  <testcase name="testFailToCreateUserDueEmptyAvatar()" classname="demo.UserTests" time="0.053"/>
+  <testcase name="testCreateUsersDeleteThemAndMakeSureTheyAreRemovedFromDB()" classname="demo.UserTests" time="0.099"/>
+  <testcase name="testCreateUsersAndFailedToDeleteThem_MINIAPP_USER()" classname="demo.UserTests" time="0.076"/>
+  <testcase name="testCreatedUserIsStoredInDB()" classname="demo.UserTests" time="0.051"/>
+  <testcase name="testSuccessfulUpdatedUserRoleUsernameAvatarInDB()" classname="demo.UserTests" time="0.079"/>
+  <testcase name="testCreatedMultiplyUsersAreStoreInDB()" classname="demo.UserTests" time="0.102"/>
+  <testcase name="testFailToCreateUserDueNullUsername()" classname="demo.UserTests" time="0.064"/>
+  <testcase name="testFailToCreateUserDueNullAvatar()" classname="demo.UserTests" time="0.053"/>
+  <testcase name="testCreateUsersAndFailedToDeleteThem_SUPERAPP_USER()" classname="demo.UserTests" time="0.086"/>
+  <testcase name="testFailToCreateUserDueInvalidEmail()" classname="demo.UserTests" time="0.051"/>
+  <system-out><![CDATA[2024-07-17T00:15:10.088+03:00  INFO 12080 --- [2024b.Tal.Mizrahi] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [demo.UserTests]: UserTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-07-17T00:15:10.090+03:00  INFO 12080 --- [2024b.Tal.Mizrahi] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration demo.Application for test class demo.UserTests
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

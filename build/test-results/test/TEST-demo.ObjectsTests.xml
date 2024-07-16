@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="demo.ObjectsTests" tests="17" skipped="0" failures="0" errors="0" timestamp="2024-07-16T21:15:04" hostname="LAPTOP-8J7N3E11" time="1.739">
+  <properties/>
+  <testcase name="testFailToCreateObjectsWithAdminUser()" classname="demo.ObjectsTests" time="0.13"/>
+  <testcase name="testUpdateObjectsWithSuperappUser()" classname="demo.ObjectsTests" time="0.168"/>
+  <testcase name="testFailToUpdateObjectsWithAdminUser()" classname="demo.ObjectsTests" time="0.133"/>
+  <testcase name="testFailToDeleteObjectsWithSuperAppUser()" classname="demo.ObjectsTests" time="0.102"/>
+  <testcase name="testFailToCreateObjectsWithNullAlias()" classname="demo.ObjectsTests" time="0.079"/>
+  <testcase name="testFailToCreateObjectsWithNullType()" classname="demo.ObjectsTests" time="0.074"/>
+  <testcase name="testFailToCreateObjectWithMiniappUser()" classname="demo.ObjectsTests" time="0.072"/>
+  <testcase name="testFailToDeleteObjectsWithMiniAppUser()" classname="demo.ObjectsTests" time="0.101"/>
+  <testcase name="testFailToCreateObjectsWithNullActive()" classname="demo.ObjectsTests" time="0.067"/>
+  <testcase name="testDeleteObjectsWithAdminUser()" classname="demo.ObjectsTests" time="0.155"/>
+  <testcase name="testFailToCreateObjectsWithEmptyType()" classname="demo.ObjectsTests" time="0.07"/>
+  <testcase name="testFailToCreateObjectsWithNullLocation()" classname="demo.ObjectsTests" time="0.066"/>
+  <testcase name="testCreateFewObjectsWithSuperappUserStoredInDB()" classname="demo.ObjectsTests" time="0.145"/>
+  <testcase name="testFailToCreateObjectsWithNullHashMap()" classname="demo.ObjectsTests" time="0.063"/>
+  <testcase name="testFailToUpdateObjectsWithMiniAppUser()" classname="demo.ObjectsTests" time="0.091"/>
+  <testcase name="testCreateObjectWithSuperappUserStoredInDB()" classname="demo.ObjectsTests" time="0.096"/>
+  <testcase name="testFailToCreateObjectsWithEmptyAlias()" classname="demo.ObjectsTests" time="0.064"/>
+  <system-out><![CDATA[2024-07-17T00:15:04.579+03:00  INFO 12080 --- [2024b.Tal.Mizrahi] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [demo.ObjectsTests]: ObjectsTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-07-17T00:15:04.581+03:00  INFO 12080 --- [2024b.Tal.Mizrahi] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration demo.Application for test class demo.ObjectsTests
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
