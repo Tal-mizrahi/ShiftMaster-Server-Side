@@ -10,6 +10,11 @@ out/
 *.ipr
 *.iws
 
+# ===== Eclipse =====
+.settings/
+.classpath
+.project
+
 # ===== OS files =====
 .DS_Store
 Thumbs.db
@@ -19,7 +24,3 @@ Thumbs.db
 
 # ===== Environment / secrets =====
 .env
-
-# ===== Docker artifacts (optional) =====
-# Uncomment if you ever generate local docker files you don't want tracked
-# *.tar
