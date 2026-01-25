@@ -1,1 +1,25 @@
-/bin/
+# ===== Build outputs =====
+build/
+bin/
+out/
+.gradle/
+
+# ===== IntelliJ / IDE =====
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# ===== OS files =====
+.DS_Store
+Thumbs.db
+
+# ===== Logs =====
+*.log
+
+# ===== Environment / secrets =====
+.env
+
+# ===== Docker artifacts (optional) =====
+# Uncomment if you ever generate local docker files you don't want tracked
+# *.tar
